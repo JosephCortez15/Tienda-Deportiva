@@ -1,246 +1,246 @@
 CREATE DATABASE IF NOT EXISTS db_stylematch;
 USE db_stylematch;
 
-CREATE TABLE biometric_profiles (
-    id_perfil INT NOT NULL AUTO_INCREMENT,
-    id_user INT NOT NULL,
-    height DECIMAL(5,2) NOT NULL, -- Ej: 175.50 (cm)
-    weight DECIMAL(5,2) NOT NULL, -- Ej: 75.50 (kg)
-    body_type VARCHAR(50) NOT NULL,
-    CONSTRAINT biometric_profiles_pk PRIMARY KEY (id_perfil)
+CREATE TABLE roles (
+    id_rol int not null auto_increment,
+    nombre_rol varchar(50),
+    descripcion varchar(80),
+    CONSTRAINT roles_pk PRIMARY KEY (id_rol)
 );
 
-CREATE TABLE category (
-    id_category INT NOT NULL AUTO_INCREMENT,
-    name_category VARCHAR(50) NOT NULL,
-    description VARCHAR(50) NOT NULL,
-    CONSTRAINT category_pk PRIMARY KEY (id_category)
+CREATE TABLE usuarios (
+    id_usuario int not null auto_increment,
+    id_rol int,
+    nombre varchar(50),
+    apellido varchar(50),
+    correo varchar(60),
+    contrasena varchar(100),
+    fecha_registro date,
+    CONSTRAINT usuarios_pk PRIMARY KEY (id_usuario)
 );
 
-CREATE TABLE detail_outfit (
-    id_outfit INT NOT NULL,
-    id_variant INT NOT NULL,
-    CONSTRAINT detail_outfit_pk PRIMARY KEY (id_outfit, id_variant)
+CREATE TABLE perfiles_biometricos (
+    id_perfil int not null auto_increment,
+    id_usuario int,
+    estatura decimal(5,2), -- Ej: 175.50 (cm)
+    peso decimal(5,2), -- Ej: 75.50 (kg)
+    tipo_cuerpo varchar(50),
+    CONSTRAINT perfiles_biometricos_pk PRIMARY KEY (id_perfil)
 );
 
-CREATE TABLE discount (
-    id_discount INT NOT NULL AUTO_INCREMENT,
-    promotion_code VARCHAR(30) NOT NULL, -- Ej: VERANO2026
-    percentage DECIMAL(5,2) NOT NULL,
-    start_date DATE NOT NULL,
-    end_date DATE NOT NULL,
-    active BOOLEAN NOT NULL,
-    CONSTRAINT discount_pk PRIMARY KEY (id_discount)
+CREATE TABLE categorias (
+    id_categoria int not null auto_increment,
+    nombre_categoria varchar(50),
+    descripcion varchar(50),
+    CONSTRAINT categorias_pk PRIMARY KEY (id_categoria)
 );
 
-CREATE TABLE historical_sales (
-    id_historical INT NOT NULL AUTO_INCREMENT,
-    id_product INT NOT NULL,
-    mount_year DATE NOT NULL,
-    total_sold_quantity INT NOT NULL,
-    CONSTRAINT historical_sales_pk PRIMARY KEY (id_historical)
+CREATE TABLE proveedores (
+    id_proveedor int not null auto_increment,
+    nombre_empresa varchar(80),
+    nombre_contacto varchar(80),
+    numero_telefono varchar(20), 
+    correo_empresa varchar(50),
+    CONSTRAINT proveedores_pk PRIMARY KEY (id_proveedor)
 );
 
-CREATE TABLE order_tracking (
-    id_tracking INT NOT NULL AUTO_INCREMENT,
-    id_order INT NOT NULL,
-    current_status VARCHAR(50) NOT NULL,
-    actualization_date DATE NOT NULL,
-    gps_coordinates VARCHAR(100) NOT NULL, -- Ej: "-16.5000, -68.1193"
-    CONSTRAINT order_tracking_pk PRIMARY KEY (id_tracking)
+CREATE TABLE productos (
+    id_producto int not null auto_increment,
+    id_categoria int,
+    nombre varchar(50),
+    marca varchar(50),
+    precio_base decimal(10,2),
+    descripcion_general varchar(100),
+    id_proveedor int,
+    CONSTRAINT productos_pk PRIMARY KEY (id_producto)
 );
 
-CREATE TABLE orders (
-    id_order INT NOT NULL AUTO_INCREMENT,
-    id_user INT NOT NULL,
-    id_discount INT NOT NULL,
-    date_order DATE NOT NULL,
-    total_paid DECIMAL(10,2) NOT NULL, -- Para montos exactos de dinero
-    state_paid VARCHAR(20) NOT NULL,
-    CONSTRAINT orders_pk PRIMARY KEY (id_order)
+CREATE TABLE variantes_producto (
+    id_variante int not null auto_increment,
+    id_producto int,
+    talla varchar(10),
+    color varchar(20),
+    stock_actual int, 
+    CONSTRAINT variantes_producto_pk PRIMARY KEY (id_variante)
 );
 
-CREATE TABLE product (
-    id_product INT NOT NULL AUTO_INCREMENT,
-    id_category INT NOT NULL,
-    name VARCHAR(50) NOT NULL,
-    brand VARCHAR(50) NOT NULL,
-    base_price DECIMAL(10,2) NOT NULL,
-    general_description VARCHAR(100) NOT NULL,
-    id_supplier INT NOT NULL,
-    CONSTRAINT product_pk PRIMARY KEY (id_product)
+CREATE TABLE atributos_visuales (
+    id_atributo int not null auto_increment,
+    id_producto int,
+    etiqueta_estilo varchar(60),
+    color_hexadecimal varchar(30),
+    tipo_tela varchar(30),
+    CONSTRAINT atributos_visuales_pk PRIMARY KEY (id_atributo)
 );
 
-CREATE TABLE product_variant (
-    id_variant INT NOT NULL AUTO_INCREMENT,
-    id_product INT NOT NULL,
-    size VARCHAR(10) NOT NULL,
-    color VARCHAR(20) NOT NULL,
-    current_stock INT NOT NULL, -- Corregido a número entero
-    CONSTRAINT product_variant_pk PRIMARY KEY (id_variant)
+CREATE TABLE descuentos (
+    id_descuento int not null auto_increment,
+    codigo_promocion varchar(30), 
+    porcentaje decimal(5,2),
+    fecha_inicio date,
+    fecha_fin date,
+    activo boolean,
+    CONSTRAINT descuentos_pk PRIMARY KEY (id_descuento)
 );
 
-CREATE TABLE requested_detail (
-    id_detail INT NOT NULL AUTO_INCREMENT,
-    id_order INT NOT NULL,
-    id_variant INT NOT NULL,
-    amount INT NOT NULL, -- Cantidad de ropa
-    unit_price DECIMAL(10,2) NOT NULL,
-    CONSTRAINT requested_detail_pk PRIMARY KEY (id_detail)
+CREATE TABLE pedidos (
+    id_pedido int not null auto_increment,
+    id_usuario int,
+    id_descuento int,
+    fecha_pedido date,
+    total_pagado decimal(10,2), 
+    estado_pago varchar(20),
+    CONSTRAINT pedidos_pk PRIMARY KEY (id_pedido)
 );
 
-CREATE TABLE reviews_ranting (
-    id_review INT NOT NULL AUTO_INCREMENT,
-    id_user INT NOT NULL,
-    id_product INT NOT NULL,
-    star INT NOT NULL, -- Estrellas del 1 al 5
-    coment VARCHAR(150) NOT NULL,
-    date DATE NOT NULL,
-    CONSTRAINT reviews_ranting_pk PRIMARY KEY (id_review)
+CREATE TABLE detalles_pedido (
+    id_detalle int not null auto_increment,
+    id_pedido int,
+    id_variante int,
+    cantidad int, 
+    precio_unitario decimal(10,2),
+    CONSTRAINT detalles_pedido_pk PRIMARY KEY (id_detalle)
 );
 
-CREATE TABLE role (
-    id_role INT NOT NULL AUTO_INCREMENT,
-    role_name VARCHAR(50) NOT NULL,
-    description VARCHAR(80) NOT NULL,
-    CONSTRAINT role_pk PRIMARY KEY (id_role)
+CREATE TABLE rastreo_pedidos (
+    id_rastreo int not null auto_increment,
+    id_pedido int,
+    estado_actual varchar(50),
+    fecha_actualizacion date,
+    coordenadas_gps varchar(100), 
+    CONSTRAINT rastreo_pedidos_pk PRIMARY KEY (id_rastreo)
 );
 
-CREATE TABLE sistem_logs (
-    id_log INT NOT NULL AUTO_INCREMENT,
-    id_user INT NOT NULL,
-    action_performed VARCHAR(50) NOT NULL,
-    date_time DATETIME NOT NULL,
-    table_affected VARCHAR(50) NOT NULL,
-    CONSTRAINT sistem_logs_pk PRIMARY KEY (id_log)
+CREATE TABLE historial_ventas (
+    id_historial int not null auto_increment,
+    id_producto int,
+    mes_anio date,
+    cantidad_total_vendida int,
+    CONSTRAINT historial_ventas_pk PRIMARY KEY (id_historial)
 );
 
-CREATE TABLE style_preference (
-    id_preference INT NOT NULL AUTO_INCREMENT,
-    id_user INT NOT NULL,
-    id_category INT NOT NULL,
-    interest_level INT NOT NULL,
-    CONSTRAINT style_preference_pk PRIMARY KEY (id_preference)
+CREATE TABLE resenas_valoraciones (
+    id_resena int not null auto_increment,
+    id_usuario int,
+    id_producto int,
+    estrellas int, 
+    comentario varchar(150),
+    fecha date,
+    CONSTRAINT resenas_valoraciones_pk PRIMARY KEY (id_resena)
 );
 
-CREATE TABLE suggested_outfits (
-    id_outfit INT NOT NULL AUTO_INCREMENT,
-    id_user INT NOT NULL,
-    name_outfit VARCHAR(50) NOT NULL,
-    creation_date DATE NOT NULL,
-    CONSTRAINT suggested_outfits_pk PRIMARY KEY (id_outfit)
+CREATE TABLE bitacora_sistema (
+    id_bitacora int not null auto_increment,
+    id_usuario int,
+    accion_realizada varchar(50),
+    fecha_hora datetime,
+    tabla_afectada varchar(50),
+    CONSTRAINT bitacora_sistema_pk PRIMARY KEY (id_bitacora)
 );
 
-CREATE TABLE supplier (
-    id_supplier INT NOT NULL AUTO_INCREMENT,
-    company_name VARCHAR(80) NOT NULL,
-    contact_name VARCHAR(80) NOT NULL,
-    phone_number VARCHAR(20) NOT NULL, -- Corregido para números telefónicos
-    email VARCHAR(50) NOT NULL,
-    CONSTRAINT supplier_pk PRIMARY KEY (id_supplier)
+CREATE TABLE preferencias_estilo (
+    id_preferencia int not null auto_increment,
+    id_usuario int,
+    id_categoria int,
+    nivel_interes int,
+    CONSTRAINT preferencias_estilo_pk PRIMARY KEY (id_preferencia)
 );
 
-CREATE TABLE users (
-    id_user INT NOT NULL AUTO_INCREMENT,
-    id_role INT NOT NULL,
-    name VARCHAR(50) NOT NULL,
-    last_name VARCHAR(50) NOT NULL,
-    email VARCHAR(60) NULL,
-    password VARCHAR(100) NOT NULL,
-    fecha_registro DATE NOT NULL,
-    CONSTRAINT users_pk PRIMARY KEY (id_user)
+CREATE TABLE conjuntos_sugeridos (
+    id_conjunto int not null auto_increment,
+    id_usuario int,
+    nombre_conjunto varchar(50),
+    fecha_creacion date,
+    CONSTRAINT conjuntos_sugeridos_pk PRIMARY KEY (id_conjunto)
 );
 
-CREATE TABLE user_images_IA (
-    id_image INT NOT NULL AUTO_INCREMENT,
-    id_user INT NOT NULL,
-    file_path VARCHAR(255) NOT NULL, -- Rutas de archivos en texto
-    AI_tags_detected VARCHAR(255) NOT NULL, -- Etiquetas separadas por comas
-    CONSTRAINT user_images_IA_pk PRIMARY KEY (id_image)
+CREATE TABLE detalles_conjunto (
+    id_conjunto int,
+    id_variante int,
+    CONSTRAINT detalles_conjunto_pk PRIMARY KEY (id_conjunto, id_variante)
 );
 
-CREATE TABLE visual_attributes (
-    id_attribute INT NOT NULL AUTO_INCREMENT,
-    id_product INT NOT NULL,
-    label_style VARCHAR(60) NOT NULL,
-    color_hex VARCHAR(30) NOT NULL,
-    fabric_type VARCHAR(30) NOT NULL,
-    CONSTRAINT visual_attributes_pk PRIMARY KEY (id_attribute)
+CREATE TABLE imagenes_usuarios_ia (
+    id_imagen int not null auto_increment,
+    id_usuario int,
+    ruta_archivo varchar(255), 
+    etiquetas_ia_detectadas varchar(255), 
+    CONSTRAINT imagenes_usuarios_ia_pk PRIMARY KEY (id_imagen)
 );
 
-CREATE TABLE wish_list (
-    id_wish INT NOT NULL AUTO_INCREMENT,
-    id_user INT NOT NULL,
-    id_product INT NOT NULL,
-    date_add DATE NOT NULL,
-    CONSTRAINT wish_list_pk PRIMARY KEY (id_wish)
+CREATE TABLE lista_deseos (
+    id_deseo int not null auto_increment,
+    id_usuario int,
+    id_producto int,
+    fecha_agregado date,
+    CONSTRAINT lista_deseos_pk PRIMARY KEY (id_deseo)
 );
 
-ALTER TABLE biometric_profiles ADD CONSTRAINT fk_biometric_user
-    FOREIGN KEY (id_user) REFERENCES users (id_user);
+ALTER TABLE usuarios ADD CONSTRAINT fk_usuario_rol
+    FOREIGN KEY (id_rol) REFERENCES roles (id_rol);
 
-ALTER TABLE detail_outfit ADD CONSTRAINT fk_detail_variant
-    FOREIGN KEY (id_variant) REFERENCES product_variant (id_variant);
+ALTER TABLE perfiles_biometricos ADD CONSTRAINT fk_biometrico_usuario
+    FOREIGN KEY (id_usuario) REFERENCES usuarios (id_usuario);
 
-ALTER TABLE detail_outfit ADD CONSTRAINT fk_detail_outfit
-    FOREIGN KEY (id_outfit) REFERENCES suggested_outfits (id_outfit);
+ALTER TABLE productos ADD CONSTRAINT fk_producto_categoria
+    FOREIGN KEY (id_categoria) REFERENCES categorias (id_categoria);
 
-ALTER TABLE historical_sales ADD CONSTRAINT fk_historical_product
-    FOREIGN KEY (id_product) REFERENCES product (id_product);
+ALTER TABLE productos ADD CONSTRAINT fk_producto_proveedor
+    FOREIGN KEY (id_proveedor) REFERENCES proveedores (id_proveedor);
 
-ALTER TABLE order_tracking ADD CONSTRAINT fk_tracking_order
-    FOREIGN KEY (id_order) REFERENCES orders (id_order);
+ALTER TABLE variantes_producto ADD CONSTRAINT fk_variante_producto
+    FOREIGN KEY (id_producto) REFERENCES productos (id_producto);
 
-ALTER TABLE orders ADD CONSTRAINT fk_orders_discount
-    FOREIGN KEY (id_discount) REFERENCES discount (id_discount);
+ALTER TABLE atributos_visuales ADD CONSTRAINT fk_visual_producto
+    FOREIGN KEY (id_producto) REFERENCES productos (id_producto);
 
-ALTER TABLE orders ADD CONSTRAINT fk_orders_user
-    FOREIGN KEY (id_user) REFERENCES users (id_user);
+ALTER TABLE pedidos ADD CONSTRAINT fk_pedido_descuento
+    FOREIGN KEY (id_descuento) REFERENCES descuentos (id_descuento);
 
-ALTER TABLE product ADD CONSTRAINT fk_product_category
-    FOREIGN KEY (id_category) REFERENCES category (id_category);
+ALTER TABLE pedidos ADD CONSTRAINT fk_pedido_usuario
+    FOREIGN KEY (id_usuario) REFERENCES usuarios (id_usuario);
 
-ALTER TABLE product ADD CONSTRAINT fk_product_supplier
-    FOREIGN KEY (id_supplier) REFERENCES supplier (id_supplier);
+ALTER TABLE detalles_pedido ADD CONSTRAINT fk_detalle_pedido
+    FOREIGN KEY (id_pedido) REFERENCES pedidos (id_pedido);
 
-ALTER TABLE product_variant ADD CONSTRAINT fk_variant_product
-    FOREIGN KEY (id_product) REFERENCES product (id_product);
+ALTER TABLE detalles_pedido ADD CONSTRAINT fk_detalle_variante
+    FOREIGN KEY (id_variante) REFERENCES variantes_producto (id_variante);
 
-ALTER TABLE requested_detail ADD CONSTRAINT fk_req_detail_order
-    FOREIGN KEY (id_order) REFERENCES orders (id_order);
+ALTER TABLE rastreo_pedidos ADD CONSTRAINT fk_rastreo_pedido
+    FOREIGN KEY (id_pedido) REFERENCES pedidos (id_pedido);
 
-ALTER TABLE requested_detail ADD CONSTRAINT fk_req_detail_variant
-    FOREIGN KEY (id_variant) REFERENCES product_variant (id_variant);
+ALTER TABLE historial_ventas ADD CONSTRAINT fk_historial_producto
+    FOREIGN KEY (id_producto) REFERENCES productos (id_producto);
 
-ALTER TABLE reviews_ranting ADD CONSTRAINT fk_reviews_product
-    FOREIGN KEY (id_product) REFERENCES product (id_product);
+ALTER TABLE resenas_valoraciones ADD CONSTRAINT fk_resena_producto
+    FOREIGN KEY (id_producto) REFERENCES productos (id_producto);
 
-ALTER TABLE reviews_ranting ADD CONSTRAINT fk_reviews_user
-    FOREIGN KEY (id_user) REFERENCES users (id_user);
+ALTER TABLE resenas_valoraciones ADD CONSTRAINT fk_resena_usuario
+    FOREIGN KEY (id_usuario) REFERENCES usuarios (id_usuario);
 
-ALTER TABLE sistem_logs ADD CONSTRAINT fk_logs_user
-    FOREIGN KEY (id_user) REFERENCES users (id_user);
+ALTER TABLE bitacora_sistema ADD CONSTRAINT fk_bitacora_usuario
+    FOREIGN KEY (id_usuario) REFERENCES usuarios (id_usuario);
 
-ALTER TABLE style_preference ADD CONSTRAINT fk_style_category
-    FOREIGN KEY (id_category) REFERENCES category (id_category);
+ALTER TABLE preferencias_estilo ADD CONSTRAINT fk_preferencia_categoria
+    FOREIGN KEY (id_categoria) REFERENCES categorias (id_categoria);
 
-ALTER TABLE style_preference ADD CONSTRAINT fk_style_user
-    FOREIGN KEY (id_user) REFERENCES users (id_user);
+ALTER TABLE preferencias_estilo ADD CONSTRAINT fk_preferencia_usuario
+    FOREIGN KEY (id_usuario) REFERENCES usuarios (id_usuario);
 
-ALTER TABLE suggested_outfits ADD CONSTRAINT fk_outfits_user
-    FOREIGN KEY (id_user) REFERENCES users (id_user);
+ALTER TABLE conjuntos_sugeridos ADD CONSTRAINT fk_conjuntos_usuario
+    FOREIGN KEY (id_usuario) REFERENCES usuarios (id_usuario);
 
-ALTER TABLE user_images_IA ADD CONSTRAINT fk_images_user
-    FOREIGN KEY (id_user) REFERENCES users (id_user);
+ALTER TABLE detalles_conjunto ADD CONSTRAINT fk_detalleconjunto_variante
+    FOREIGN KEY (id_variante) REFERENCES variantes_producto (id_variante);
 
-ALTER TABLE users ADD CONSTRAINT fk_user_role
-    FOREIGN KEY (id_role) REFERENCES role (id_role);
+ALTER TABLE detalles_conjunto ADD CONSTRAINT fk_detalleconjunto_conjunto
+    FOREIGN KEY (id_conjunto) REFERENCES conjuntos_sugeridos (id_conjunto);
 
-ALTER TABLE visual_attributes ADD CONSTRAINT fk_visual_product
-    FOREIGN KEY (id_product) REFERENCES product (id_product);
+ALTER TABLE imagenes_usuarios_ia ADD CONSTRAINT fk_imagenes_usuario
+    FOREIGN KEY (id_usuario) REFERENCES usuarios (id_usuario);
 
-ALTER TABLE wish_list ADD CONSTRAINT fk_wish_product
-    FOREIGN KEY (id_product) REFERENCES product (id_product);
+ALTER TABLE lista_deseos ADD CONSTRAINT fk_deseos_producto
+    FOREIGN KEY (id_producto) REFERENCES productos (id_producto);
 
-ALTER TABLE wish_list ADD CONSTRAINT fk_wish_user
-    FOREIGN KEY (id_user) REFERENCES users (id_user);
+ALTER TABLE lista_deseos ADD CONSTRAINT fk_deseos_usuario
+    FOREIGN KEY (id_usuario) REFERENCES usuarios (id_usuario);
