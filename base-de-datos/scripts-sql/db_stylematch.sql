@@ -623,3 +623,289 @@ begin
 	on r.id_producto = p.id_producto
 	where p.nombre = producto;
 end;
+
+
+ * ÁLGEBRA RELACIONAL — STYLEMATCH
+
+
+
+/*
+ * Usuarios y Roles
+ */
+
+π id_usuario,nombre,apellido,nombre_rol,correo (
+usuarios ⨝ roles
+)
+
+
+/*
+ * Usuarios registrados
+ */
+
+π nombre,apellido,correo,fecha_registro (
+usuarios
+)
+
+
+/*
+ * Perfiles biométricos
+ */
+
+π id_usuario,estatura,peso,tipo_cuerpo (
+perfiles_biometricos
+)
+
+
+/*
+ * Productos con categoría y proveedor
+ */
+
+π id_producto,nombre,marca,nombre_categoria,nombre_empresa,precio_base (
+productos ⨝ categorias ⨝ proveedores
+)
+
+
+/*
+ * Variantes de productos
+ */
+
+π id_variante,nombre,talla,color,stock_actual (
+variantes_producto ⨝ productos
+)
+
+
+/*
+ * Productos y atributos visuales
+ */
+
+π nombre,marca,etiqueta_estilo,tipo_tela,color_hexadecimal (
+productos ⨝ atributos_visuales
+)
+
+
+/*
+ * Productos con stock bajo
+ */
+
+σ stock_actual < 10 (
+variantes_producto
+)
+
+
+/*
+ * Pedidos realizados
+ */
+
+π id_pedido,nombre,apellido,fecha_pedido,total_pagado,estado_pago (
+pedidos ⨝ usuarios
+)
+
+
+/*
+ * Pedidos con descuentos
+ */
+
+π id_pedido,codigo_promocion,porcentaje,total_pagado (
+pedidos ⨝ descuentos
+)
+
+
+/*
+ * Detalle de pedidos
+ */
+
+π id_detalle,id_pedido,nombre,color,talla,cantidad,precio_unitario (
+detalles_pedido ⨝ variantes_producto ⨝ productos
+)
+
+
+/*
+ * Rastreo de pedidos
+ */
+
+π id_pedido,estado_actual,fecha_actualizacion,coordenadas_gps (
+rastreo_pedidos ⨝ pedidos
+)
+
+
+/*
+ * Historial de ventas
+ */
+
+π nombre,mes_anio,cantidad_total_vendida (
+historial_ventas ⨝ productos
+)
+
+
+/*
+ * Reseñas y valoraciones
+ */
+
+π id_resena,nombre,apellido,estrellas,comentario,fecha (
+resenas_valoraciones ⨝ usuarios ⨝ productos
+)
+
+
+/*
+ * Preferencias de estilo
+ */
+
+π nombre,apellido,nombre_categoria,nivel_interes (
+preferencias_estilo ⨝ usuarios ⨝ categorias
+)
+
+
+/*
+ * Conjuntos sugeridos
+ */
+
+π nombre_conjunto,nombre,apellido,fecha_creacion (
+conjuntos_sugeridos ⨝ usuarios
+)
+
+
+/*
+ * Detalle de conjuntos
+ */
+
+π id_conjunto,nombre,talla,color (
+detalles_conjunto ⨝ variantes_producto ⨝ productos
+)
+
+
+/*
+ * Imágenes procesadas por IA
+ */
+
+π id_imagen,nombre,apellido,ruta_archivo,etiquetas_ia_detectadas (
+imagenes_usuarios_ia ⨝ usuarios
+)
+
+
+/*
+ * Lista de deseos
+ */
+
+π nombre,apellido,nombre,fecha_agregado (
+lista_deseos ⨝ usuarios ⨝ productos
+)
+
+
+/*
+ * Cantidad de productos por pedido
+ */
+
+γ id_pedido, COUNT(id_variante), total_pagado (
+pedidos ⨝ detalles_pedido
+)
+
+
+/*
+ * Productos más vendidos
+ */
+
+γ id_producto, SUM(cantidad_total_vendida) (
+historial_ventas
+)
+
+
+/*
+ * Productos mejor valorados
+ */
+
+γ id_producto, AVG(estrellas) (
+resenas_valoraciones
+)
+
+ * SELECCIONES
+ 
+
+
+/*
+ * Buscar usuario
+ */
+
+σ nombre = 'Juan' (
+usuarios
+)
+
+
+/*
+ * Buscar productos por categoría
+ */
+
+σ nombre_categoria = 'Poleras' (
+productos ⨝ categorias
+)
+
+
+/*
+ * Buscar pedidos pagados
+ */
+
+σ estado_pago = 'Pagado' (
+pedidos
+)
+
+
+/*
+ * Buscar productos Nike
+ */
+
+σ marca = 'Nike' (
+productos
+)
+
+
+/*
+ * Buscar productos negros
+ */
+
+σ color = 'Negro' (
+variantes_producto
+)
+
+
+/*
+ * Buscar reseñas de 5 estrellas
+ */
+
+σ estrellas = 5 (
+resenas_valoraciones
+)
+
+
+/*
+ * Buscar pedidos de un usuario
+ */
+
+σ id_usuario = 1 (
+pedidos
+)
+
+
+/*
+ * Buscar lista de deseos de usuario
+ */
+
+σ id_usuario = 1 (
+lista_deseos
+)
+
+
+/*
+ * Buscar productos baratos
+ */
+
+σ precio_base < 100 (
+productos
+)
+
+
+/*
+ * Buscar productos caros
+ */
+
+σ precio_base > 500 (
+productos
+)
