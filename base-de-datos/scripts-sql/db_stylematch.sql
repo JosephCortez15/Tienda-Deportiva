@@ -244,3 +244,382 @@ ALTER TABLE lista_deseos ADD CONSTRAINT fk_deseos_producto
 
 ALTER TABLE lista_deseos ADD CONSTRAINT fk_deseos_usuario
     FOREIGN KEY (id_usuario) REFERENCES usuarios (id_usuario);
+
+/*
+ * ============================================
+ * VISTAS
+ * ============================================
+ */
+
+create view v_usuarios_roles
+as
+select u.id_usuario,
+concat(u.nombre," ",u.apellido) as Usuario,
+r.nombre_rol as Rol,
+u.correo,
+u.fecha_registro
+from usuarios u
+inner join roles r
+on u.id_rol = r.id_rol;
+
+
+create view v_productos
+as
+select p.id_producto,
+p.nombre as Producto,
+p.marca,
+c.nombre_categoria as Categoria,
+pr.nombre_empresa as Proveedor,
+p.precio_base
+from productos p
+inner join categorias c
+on p.id_categoria = c.id_categoria
+inner join proveedores pr
+on p.id_proveedor = pr.id_proveedor;
+
+
+create view v_variantes
+as
+select vp.id_variante,
+p.nombre as Producto,
+vp.talla,
+vp.color,
+vp.stock_actual
+from variantes_producto vp
+inner join productos p
+on vp.id_producto = p.id_producto;
+
+
+create view v_pedidos
+as
+select pe.id_pedido,
+concat(u.nombre," ",u.apellido) as Cliente,
+pe.fecha_pedido,
+pe.total_pagado,
+pe.estado_pago
+from pedidos pe
+inner join usuarios u
+on pe.id_usuario = u.id_usuario;
+
+
+create view v_detalle_pedidos
+as
+select dp.id_detalle,
+pe.id_pedido,
+p.nombre as Producto,
+vp.color,
+vp.talla,
+dp.cantidad,
+dp.precio_unitario
+from detalles_pedido dp
+inner join pedidos pe
+on dp.id_pedido = pe.id_pedido
+inner join variantes_producto vp
+on dp.id_variante = vp.id_variante
+inner join productos p
+on vp.id_producto = p.id_producto;
+
+
+create view v_resenas
+as
+select r.id_resena,
+concat(u.nombre," ",u.apellido) as Usuario,
+p.nombre as Producto,
+r.estrellas,
+r.comentario,
+r.fecha
+from resenas_valoraciones r
+inner join usuarios u
+on r.id_usuario = u.id_usuario
+inner join productos p
+on r.id_producto = p.id_producto;
+
+
+create view v_productos_estilo
+as
+select p.nombre as Producto,
+p.marca,
+a.etiqueta_estilo,
+a.tipo_tela,
+a.color_hexadecimal
+from productos p
+inner join atributos_visuales a
+on p.id_producto = a.id_producto;
+
+
+create view v_lista_deseos
+as
+select concat(u.nombre," ",u.apellido) as Usuario,
+p.nombre as Producto,
+l.fecha_agregado
+from lista_deseos l
+inner join usuarios u
+on l.id_usuario = u.id_usuario
+inner join productos p
+on l.id_producto = p.id_producto;
+
+
+create view v_historial_ventas
+as
+select p.nombre as Producto,
+h.mes_anio,
+h.cantidad_total_vendida
+from historial_ventas h
+inner join productos p
+on h.id_producto = p.id_producto;
+
+
+create view v_rastreo_pedidos
+as
+select pe.id_pedido,
+concat(u.nombre," ",u.apellido) as Cliente,
+r.estado_actual,
+r.fecha_actualizacion,
+r.coordenadas_gps
+from rastreo_pedidos r
+inner join pedidos pe
+on r.id_pedido = pe.id_pedido
+inner join usuarios u
+on pe.id_usuario = u.id_usuario;
+
+
+create view v_preferencias
+as
+select concat(u.nombre," ",u.apellido) as Usuario,
+c.nombre_categoria,
+p.nivel_interes
+from preferencias_estilo p
+inner join usuarios u
+on p.id_usuario = u.id_usuario
+inner join categorias c
+on p.id_categoria = c.id_categoria;
+
+
+create view v_conjuntos
+as
+select c.nombre_conjunto,
+concat(u.nombre," ",u.apellido) as Usuario,
+c.fecha_creacion
+from conjuntos_sugeridos c
+inner join usuarios u
+on c.id_usuario = u.id_usuario;
+
+
+create view v_cantidad_productos
+as
+select pe.id_pedido,
+count(dp.id_variante) as Cantidad_Productos,
+pe.total_pagado
+from pedidos pe
+inner join detalles_pedido dp
+on pe.id_pedido = dp.id_pedido
+group by pe.id_pedido;
+/*
+ * ============================================
+ * PROCEDIMIENTOS
+ * ============================================
+ */
+
+create procedure p_buscar_usuario(
+	in nom varchar(50)
+)
+begin
+	select u.id_usuario,
+	concat(u.nombre," ",u.apellido) as Usuario,
+	r.nombre_rol as Rol,
+	u.correo
+	from usuarios u
+	inner join roles r
+	on u.id_rol = r.id_rol
+	where u.nombre = nom;
+end;
+
+
+create procedure p_productos_categoria(
+	in categoria varchar(50)
+)
+begin
+	select p.id_producto,
+	p.nombre as Producto,
+	p.marca,
+	c.nombre_categoria,
+	p.precio_base
+	from productos p
+	inner join categorias c
+	on p.id_categoria = c.id_categoria
+	where c.nombre_categoria = categoria;
+end;
+
+
+create procedure p_buscar_pedido(
+	in idP int
+)
+begin
+	select pe.id_pedido,
+	concat(u.nombre," ",u.apellido) as Cliente,
+	pe.total_pagado,
+	pe.estado_pago
+	from pedidos pe
+	inner join usuarios u
+	on pe.id_usuario = u.id_usuario
+	where pe.id_pedido = idP;
+end;
+
+
+create procedure p_insertar_usuario(
+	in idRol int,
+	in nom varchar(50),
+	in ape varchar(50),
+	in correoU varchar(60),
+	in contra varchar(100),
+	in fechaR date
+)
+begin
+	insert into usuarios(
+	id_rol,
+	nombre,
+	apellido,
+	correo,
+	contrasena,
+	fecha_registro
+	)
+	values(
+	idRol,
+	nom,
+	ape,
+	correoU,
+	contra,
+	fechaR
+	);
+end;
+
+
+create procedure p_editar_usuario(
+	in nombre_original varchar(50),
+	in nombre_nuevo varchar(50)
+)
+begin
+	update usuarios
+	set nombre = nombre_nuevo
+	where nombre = nombre_original;
+end;
+
+
+create procedure p_borrar_usuario(
+	in idU int
+)
+begin
+	delete
+	from usuarios
+	where id_usuario = idU;
+end;
+
+
+create procedure p_insertar_producto(
+	in idCat int,
+	in nom varchar(50),
+	in marcaP varchar(50),
+	in precio decimal(10,2),
+	in descripcionP varchar(100),
+	in idProv int
+)
+begin
+	insert into productos(
+	id_categoria,
+	nombre,
+	marca,
+	precio_base,
+	descripcion_general,
+	id_proveedor
+	)
+	values(
+	idCat,
+	nom,
+	marcaP,
+	precio,
+	descripcionP,
+	idProv
+	);
+end;
+
+
+create procedure p_editar_precio_producto(
+	in idProd int,
+	in nuevo_precio decimal(10,2)
+)
+begin
+	update productos
+	set precio_base = nuevo_precio
+	where id_producto = idProd;
+end;
+
+
+create procedure p_borrar_producto(
+	in idProd int
+)
+begin
+	delete
+	from productos
+	where id_producto = idProd;
+end;
+
+
+create procedure p_cantidad_productos(
+	in idPedido int
+)
+begin
+	select pe.id_pedido,
+	count(dp.id_variante) as Cantidad_Productos,
+	pe.total_pagado
+	from pedidos pe
+	inner join detalles_pedido dp
+	on pe.id_pedido = dp.id_pedido
+	where pe.id_pedido = idPedido
+	group by pe.id_pedido;
+end;
+
+
+create procedure p_lista_deseos_usuario(
+	in nom varchar(50)
+)
+begin
+	select concat(u.nombre," ",u.apellido) as Usuario,
+	p.nombre as Producto,
+	l.fecha_agregado
+	from lista_deseos l
+	inner join usuarios u
+	on l.id_usuario = u.id_usuario
+	inner join productos p
+	on l.id_producto = p.id_producto
+	where u.nombre = nom;
+end;
+
+
+create procedure p_rastreo_pedido(
+	in idPed int
+)
+begin
+	select pe.id_pedido,
+	r.estado_actual,
+	r.fecha_actualizacion,
+	r.coordenadas_gps
+	from rastreo_pedidos r
+	inner join pedidos pe
+	on r.id_pedido = pe.id_pedido
+	where pe.id_pedido = idPed;
+end;
+
+
+create procedure p_resenas_producto(
+	in producto varchar(50)
+)
+begin
+	select p.nombre as Producto,
+	r.estrellas,
+	r.comentario,
+	r.fecha
+	from resenas_valoraciones r
+	inner join productos p
+	on r.id_producto = p.id_producto
+	where p.nombre = producto;
+end;
