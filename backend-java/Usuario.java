@@ -12,10 +12,12 @@ public class Usuario {
     private String fechaRegistro;
     private List<Producto> carrito;
     private List<Producto> listaDeseos;
+    private List<Pedido> historialPedidos;
 
     public Usuario(){
         this.carrito = new ArrayList<>();
         this.listaDeseos = new ArrayList<>();
+        this.historialPedidos = new ArrayList<>();
     }
 
     public Usuario(int idUsuario, int idRol, String nombre, String apellido, String correo, String contrasena, String fechaRegistro){
@@ -28,6 +30,7 @@ public class Usuario {
         this.fechaRegistro = fechaRegistro;
         this.carrito = new ArrayList<>();
         this.listaDeseos = new ArrayList<>();
+        this.historialPedidos = new ArrayList<>();
     }
 
     public int getIdUsuario() {
@@ -133,6 +136,25 @@ public class Usuario {
 
     public void vaciarCarrito(){
         this.carrito.clear();
+    }
+
+    public void agregarPedido(Pedido nuevoPedido){
+        this.historialPedidos.add(nuevoPedido);
+    }
+
+    public void verHistorialPedidos(){
+        System.out.println("\n Historial de " + this.nombre);
+        if (historialPedidos.isEmpty()) {
+            System.out.println("Aun no se realizo niguna compra.");
+        }   else {
+            for (Pedido p : historialPedidos){
+                p.imprimirTicket();
+            }
+        }
+    }
+
+    public List<Producto> getListaCarrito(){
+        return this.carrito;
     }
 
     @Override

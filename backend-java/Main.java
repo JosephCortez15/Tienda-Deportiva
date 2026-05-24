@@ -22,7 +22,8 @@ public class Main {
             System.out.println("4. Comprar un producto (Agregar al carrito)");
             System.out.println("5. Lista de deseos");
             System.out.println("6. Ir a la caja (Pagar)");
-            System.out.println("7. Salir");
+            System.out.println("7. Ver el historial de pedidos");
+            System.out.println("8. Salir");
             System.out.println("Elige una opcion: ");
             opcion = teclado.nextInt();
             teclado.nextLine();
@@ -103,6 +104,8 @@ public class Main {
                     teclado.nextLine();
                     if (confirmacion == 1) {
                             System.out.println("\n Procesando pago...");
+                            Pedido nuevoPedido = new Pedido(101, "2026-05-23", totalAPagar, "Pagado", comprador.getListaCarrito());
+                            comprador .agregarPedido(nuevoPedido);
                             System.out.println("Pago exitoso! Se ha generado su pedido.");
                             System.out.println("Pasando al area de preparacion y envio.");
                             comprador.vaciarCarrito();
@@ -112,8 +115,13 @@ public class Main {
                         System.out.println("\n Opcion no valida. Cancelando operacion.");
                     }
                 }
-            }   else if (opcion == 5) {
+            }   else if (opcion == 7) {
+                Usuario comprador = tablaUsuarios .get(0);
+                comprador.verHistorialPedidos();
+            }   else if (opcion == 8) {
                 System.out.println("Saliendo del sistema");
+            }   else{
+                System.out.println("Opcion no valida, pruebe de nuevo.");
             }
         }
         teclado.close();
