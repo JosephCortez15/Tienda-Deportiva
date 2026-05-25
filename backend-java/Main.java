@@ -8,7 +8,7 @@ public class Main {
         List<Producto> tablaProductos = new ArrayList<>();
 
         tablaUsuarios.add(new Usuario(1, 1, "Admin", "Principal", "admin@stylematch.com", "1234", "2026-05-19"));
-        tablaUsuarios.add(new Usuario(1, 2, "Maria", "Gomez", "maria@gmail.com ", "abcd", "2026-05-19"));
+        tablaUsuarios.add(new Usuario(2, 2, "Maria", "Gomez", "maria@gmail.com ", "abcd", "2026-05-19"));
         tablaProductos.add(new Producto(1, 2, "Polera", "Adidas", 250, "Polera para el uso diario", 1));
 
         Scanner teclado = new Scanner(System.in);
@@ -100,6 +100,18 @@ public class Main {
                 }   else {
                     comprador.verCarrito();
                     double totalAPagar = comprador.calcularTotalCarrito();
+                    System.out.println("Tienes cupon de descuento?");
+                    System.out.println("Si su respuesta es si coloque el codigo promocional");
+                    System.out.println("Si su respuesta es no, pasara a confirmar su pago.");
+                    String codigo = teclado.nextLine();
+                    if (codigo.equalsIgnoreCase("MUNDIAL")) {
+                        double descuento = totalAPagar * 0.20;
+                        totalAPagar = totalAPagar - descuento;
+                        System.out.println("Codigo promocional aceptado, se te descontaron " + descuento);
+                        System.out.println("Nuevo total a pagar: " + totalAPagar);
+                    }   else if (!codigo.trim().isEmpty()) {
+                        System.out.println("Codigo no valido o expirado");
+                    }
                     System.out.println("\n --- Deseas confirmar tu pago por: " + totalAPagar + "? (Presione 1 para SI / 2 para NO)");
                     int confirmacion = teclado.nextInt();
                     teclado.nextLine();
