@@ -23,7 +23,8 @@ public class Main {
             System.out.println("5. Lista de deseos");
             System.out.println("6. Ir a la caja (Pagar)");
             System.out.println("7. Ver el historial de pedidos");
-            System.out.println("8. Salir");
+            System.out.println("8. Asesoria de talla con IA");
+            System.out.println("9. Salir");
             System.out.println("Elige una opcion: ");
             opcion = teclado.nextInt();
             teclado.nextLine();
@@ -119,6 +120,18 @@ public class Main {
                 Usuario comprador = tablaUsuarios .get(0);
                 comprador.verHistorialPedidos();
             }   else if (opcion == 8) {
+                System.out.println("\n Configurar perfil biometrico");
+                Usuario cliente = tablaUsuarios.get(0);
+                System.out.println("Ingresa tu estatura en metros (ej. 1,75): ");
+                double estatura = teclado.nextDouble();
+                teclado.nextLine();
+                System.out.println("Ingresa tu peso en kilogramos (Ej. 70,5)");
+                double peso = teclado.nextDouble();
+                teclado.nextLine();
+                PerfilBiometrico nuevoPerfil = new PerfilBiometrico(estatura, peso);
+                cliente.setPerfilBio(nuevoPerfil);
+                cliente.verAsesoriaDeTalla();
+            }   else if (opcion == 9) {
                 System.out.println("Saliendo del sistema");
             }   else{
                 System.out.println("Opcion no valida, pruebe de nuevo.");

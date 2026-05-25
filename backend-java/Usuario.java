@@ -13,6 +13,7 @@ public class Usuario {
     private List<Producto> carrito;
     private List<Producto> listaDeseos;
     private List<Pedido> historialPedidos;
+    private PerfilBiometrico perfilBio;
 
     public Usuario(){
         this.carrito = new ArrayList<>();
@@ -155,6 +156,24 @@ public class Usuario {
 
     public List<Producto> getListaCarrito(){
         return this.carrito;
+    }
+
+    public PerfilBiometrico getPerfilBio(){
+        return perfilBio;
+    }
+
+    public void setPerfilBio(PerfilBiometrico perfilBio){
+        this.perfilBio = perfilBio;
+    }
+
+    public void verAsesoriaDeTalla(){
+        if (this.perfilBio == null) {
+            System.out.println("Aun no configuraste tu perfil biometrico");
+        }   else {
+            System.out.println("\n Asesoria inteligente de Stylematch");
+            System.out.println("Basado en tu estatura (" + perfilBio.getEstatura() +  "m) y peso (" + perfilBio.getPeso() + "kg): " );
+            System.out.println("Tu talla ideal recomendada es: " + perfilBio.calcularTallaIdeal());
+        }
     }
 
     @Override
