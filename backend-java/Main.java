@@ -10,6 +10,7 @@ public class Main {
         tablaUsuarios.add(new Usuario(1, 1, "Admin", "Principal", "admin@stylematch.com", "1234", "2026-05-19"));
         tablaUsuarios.add(new Usuario(2, 2, "Maria", "Gomez", "maria@gmail.com ", "abcd", "2026-05-19"));
         tablaProductos.add(new Producto(1, 2, "Polera", "Adidas", 250, "Polera para el uso diario", 1));
+        tablaProductos.add(new Producto(2, 2, "Tenis", "Nike", 350.5, "Tenis para el uso diario", 1));
 
         Scanner teclado = new Scanner(System.in);
         int opcion = 0;
@@ -24,7 +25,8 @@ public class Main {
             System.out.println("6. Ir a la caja (Pagar)");
             System.out.println("7. Ver el historial de pedidos");
             System.out.println("8. Asesoria de talla con IA");
-            System.out.println("9. Salir");
+            System.out.println("9. Calificar un producto");
+            System.out.println("10. Salir");
             System.out.println("Elige una opcion: ");
             opcion = teclado.nextInt();
             teclado.nextLine();
@@ -144,6 +146,38 @@ public class Main {
                 cliente.setPerfilBio(nuevoPerfil);
                 cliente.verAsesoriaDeTalla();
             }   else if (opcion == 9) {
+                System.out.println("\n Dejar una reseñia");
+                System.out.println("Ingresa el ID del producto que deseas calificar: ");
+                int idBuscado = teclado.nextInt();
+                teclado.nextLine();
+                Producto productoA_Calificar = null;
+                for (Producto p : tablaProductos){
+                    if (p.getIdProducto() == idBuscado) {
+                        productoA_Calificar = p;
+                        break;
+                    }
+                }
+                if (productoA_Calificar != null) {
+                    Usuario clienteActual = tablaUsuarios.get(0);
+                    System.out.println("Del 1 al 5, ¿Cuántas estrellas le darías a " + productoA_Calificar.getNombre() + "?");
+                    int estrellas = teclado.nextInt();
+                    teclado.nextLine();
+                    if (estrellas <= 1) {
+                        estrellas = 1;
+                    }
+                    if (estrellas >= 5) {
+                        estrellas = 5;
+                    }
+                    System.out.println("Escriba un breve comentario: ");
+                    String comentario = teclado.nextLine();
+                    Resena nuevaResena = new Resena(estrellas, comentario, clienteActual.getNombre());
+                    productoA_Calificar.agregarResena(nuevaResena);
+                    System.out.println("Gracias por su opinion");
+                    productoA_Calificar.verTodasLasResenas();
+                }   else{
+                    System.out.println("Error: No existe ningun producto con ese ID");
+                }
+            }   else if (opcion == 10) {
                 System.out.println("Saliendo del sistema");
             }   else{
                 System.out.println("Opcion no valida, pruebe de nuevo.");

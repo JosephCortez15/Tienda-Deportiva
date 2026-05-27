@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Producto {
     private int idProducto;
     private int idCategoria;
@@ -6,6 +9,7 @@ public class Producto {
     private double precioBase;
     private String descripcionGeneral;
     private int idProveedor;
+    private List<Resena> listaResenas;
 
     public Producto(){
     }
@@ -18,6 +22,7 @@ public class Producto {
         this.precioBase = precioBase;
         this.descripcionGeneral = descripcionGeneral;
         this.idProveedor = idProveedor;
+        this.listaResenas = new ArrayList<>();
     }
 
     public int getIdProducto() {
@@ -74,6 +79,21 @@ public class Producto {
 
     public void setIdProveedor(int idProveedor) {
         this.idProveedor = idProveedor;
+    }
+
+    public void agregarResena(Resena r){
+        this.listaResenas.add(r);
+    }
+
+    public void verTodasLasResenas(){
+        System.out.println("\n Reseñas para: " + this.nombre + "---");
+        if (listaResenas.isEmpty()) {
+            System.out.println("Aun no hay opiniones.");
+        }   else {
+            for (Resena r : listaResenas){
+                r.imprimirResena();
+            }
+        }
     }
 
     @Override
