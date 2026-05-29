@@ -36,7 +36,7 @@ public class Resena {
     public void imprimirResena(){
         String estrellas = "";
         for (int i = 0; i < calificacion; i++){
-            estrellas += "5"; //Aca tendría que haber estrellas pero no se como colocar o alguna cosa con la que poder cambiar
+            estrellas += "⭐"; //Aca tendría que haber estrellas pero no se como colocar o alguna cosa con la que poder cambiar
         }
         System.out.println(estrellas + " | " + nombreUsuario + " dice: " + comentario);
     }

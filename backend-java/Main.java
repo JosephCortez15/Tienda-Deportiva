@@ -15,7 +15,7 @@ public class Main {
         Scanner teclado = new Scanner(System.in);
         int opcion = 0;
 
-        while (opcion != 5) {
+        while (opcion != 11) {
             System.out.println("\n--- Bienvenidos a StyleMatch");
             System.out.println("1. Ver usuarios registrados");
             System.out.println("2. Registrar nuevo usuario");
@@ -26,7 +26,8 @@ public class Main {
             System.out.println("7. Ver el historial de pedidos");
             System.out.println("8. Asesoria de talla con IA");
             System.out.println("9. Calificar un producto");
-            System.out.println("10. Salir");
+            System.out.println("10. [Admin] Gestionar envios");
+            System.out.println("11. Salir");
             System.out.println("Elige una opcion: ");
             opcion = teclado.nextInt();
             teclado.nextLine();
@@ -178,6 +179,50 @@ public class Main {
                     System.out.println("Error: No existe ningun producto con ese ID");
                 }
             }   else if (opcion == 10) {
+                System.out.println("\n Panel administrador de envios");
+                Usuario cliente = tablaUsuarios.get(0);
+                List<Pedido> todosLosPedidos = cliente.getHistorialPedidos();
+                if (todosLosPedidos.isEmpty()) {
+                    System.out.println("No hay pedidos pendientes en el sistema");
+                }   else {
+                    System.out.println("\n Lista de pedidos Activos");
+                    for (Pedido p : todosLosPedidos){
+                        System.out.println("ID: " + p.getIdPedido() + " | Estado actual: " + p.getEstadoEnvio());
+                    }
+                    System.out.println("\n Ingresa el ID del pedido que deseas actualizar: ");
+                    int idActualizar = teclado.nextInt();
+                    teclado.nextLine();
+
+                    Pedido pedidoEncontrado = null;
+                    for (Pedido p : todosLosPedidos){
+                        if (p.getIdPedido() == idActualizar) {
+                            pedidoEncontrado = p;
+                            break;
+                        }
+                    }
+                    if (pedidoEncontrado != null) {
+                        System.out.println("Selecciona el nuevo estado del pedido #" + idActualizar + ":");
+                        System.out.println("1. Preparado en Almacen");
+                        System.out.println("2. En camino (Entregado al repartidor)");
+                        System.out.println("3. Entregado al cliente");
+                        System.out.println("Opcion: ");
+                        int nuevoEstado = teclado.nextInt();
+                        teclado.nextLine();
+                        if (nuevoEstado == 1) {
+                            pedidoEncontrado.setEstadoEnvio("Preparando en almacen");
+                        }   else if (nuevoEstado == 2) {
+                            pedidoEncontrado.setEstadoEnvio("En camino (Entregado al repartidor)");
+                        }   else if (nuevoEstado == 3) {
+                            pedidoEncontrado.setEstadoEnvio("Entregado al cliente");
+                        }   else{
+                            System.out.println("Opcion invalida");
+                        }
+                        System.out.println("!Estado actualizado exitosamente¡");
+                    }   else {
+                        System.out.println("Error: no se encontro ningun pedido con el ID: " + idActualizar);
+                    }
+                }
+            }   else if (opcion == 11) {
                 System.out.println("Saliendo del sistema");
             }   else{
                 System.out.println("Opcion no valida, pruebe de nuevo.");

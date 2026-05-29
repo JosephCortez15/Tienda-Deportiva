@@ -176,6 +176,10 @@ public class Usuario {
         }
     }
 
+    public List<Pedido> getHistorialPedidos(){
+        return this.historialPedidos;
+    }
+
     @Override
     public String toString() {
         return "Usuario [idUsuario=" + idUsuario + ", idRol=" + idRol + ", nombre=" + nombre + ", apellido=" + apellido
