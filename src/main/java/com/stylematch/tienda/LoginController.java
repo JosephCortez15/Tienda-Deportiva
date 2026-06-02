@@ -14,14 +14,13 @@ public class LoginController {
     private UsuarioRepository usuarioRepository;
 
     @PostMapping("/login")
-    public ResponseEntity<?> iniciarSesion(@RequestBody Usuario datosLogin) {
-        return usuarioRepository.findByCorreoAndContrasenia(datosLogin.getCorreo(), datosLogin.getContrasenia())
-                .map(usuarioEncontrado -> {
-                    return ResponseEntity.ok("Bienvenid@ " + usuarioEncontrado.getNombre());
-                })
-                .orElseGet(() -> {
-                    return ResponseEntity.status(401).body("Correo o contraseña incorrectos");
-                });
+    public ResponseEntity<Object> iniciarSesion(@RequestBody Usuario datosLogin) {
+            var usuarioOpt = usuarioRepository.findByCorreoAndContrasenia(datosLogin.getCorreo(), datosLogin.getContrasenia());
+            if (usuarioOpt.isPresent()) {
+                return ResponseEntity.ok(usuarioOpt.get());
+            } else {
+                return ResponseEntity.status(401).body("Correo o contraseña incorrectos");
+            }
     }
 
     @PostMapping("/registro")

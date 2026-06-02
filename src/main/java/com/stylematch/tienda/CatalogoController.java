@@ -14,7 +14,7 @@ public class CatalogoController {
     private ProductoRepository productoRepository;
 
     @GetMapping("/api/productos")
-    public List<ProductoCatalogo> obtenerCatalogo() {
+    public List<Producto> obtenerCatalogo() {
         return productoRepository.findAll();
     }
 }

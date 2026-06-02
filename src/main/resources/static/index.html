@@ -6,31 +6,25 @@
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; margin: 0; }
         
-        #pantalla-auth {
-            display: flex; justify-content: center; align-items: center; height: 100vh;
-            background: linear-gradient(135deg, #1f1c2c 0%, #928dab 100%);
-        }
-        .auth-card {
-            background: white; padding: 40px 30px; border-radius: 15px;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.3); text-align: center; width: 100%; max-width: 350px;
-        }
+        #pantalla-auth { display: flex; justify-content: center; align-items: center; height: 100vh; background: linear-gradient(135deg, #1f1c2c 0%, #928dab 100%); }
+        .auth-card { background: white; padding: 40px 30px; border-radius: 15px; box-shadow: 0 15px 30px rgba(0,0,0,0.3); text-align: center; width: 100%; max-width: 350px; }
         .auth-card h1 { color: #222; margin-top: 0; font-size: 2em; }
-        .auth-card input {
-            width: 85%; padding: 12px 15px; margin-bottom: 15px;
-            border: 1px solid #ddd; border-radius: 8px; font-size: 15px;
-        }
-        .auth-card button {
-            width: 95%; background-color: #1f1c2c; color: white; border: none;
-            padding: 12px; font-size: 16px; border-radius: 8px; cursor: pointer; font-weight: bold;
-        }
+        .auth-card input { width: 85%; padding: 12px 15px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 8px; font-size: 15px; }
+        .auth-card button { width: 95%; background-color: #1f1c2c; color: white; border: none; padding: 12px; font-size: 16px; border-radius: 8px; cursor: pointer; font-weight: bold; }
         .auth-card button:hover { background-color: #332f4a; }
         .link-cambio { color: #007bff; cursor: pointer; font-size: 0.9em; margin-top: 15px; display: block; text-decoration: underline;}
 
         .cabecera-tienda { background-color: #1f1c2c; color: white; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; }
-        .btn-salir { background-color: #dc3545; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; }
+        .btn-salir { background-color: #dc3545; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold;}
+        .btn-favoritos { background-color: #ff4d4d; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; margin-right: 10px; transition: 0.2s;}
+        .btn-favoritos:hover { background-color: #cc0000; }
+        .btn-volver { background-color: #fff; color: #1f1c2c; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; margin-right: 10px; display: none;}
+        
         .producto { background: white; border: 1px solid #eee; padding: 20px; margin: 15px; display: inline-block; border-radius: 12px; width: 220px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
         .precio { color: #28a745; font-weight: bold; font-size: 1.5em; margin: 10px 0;}
-        .btn-comprar { background-color: #007bff; color: white; border: none; padding: 10px; cursor: pointer; border-radius: 6px; font-weight: bold; width: 100%;}
+        .btn-comprar { background-color: #007bff; color: white; border: none; padding: 10px; cursor: pointer; border-radius: 6px; font-weight: bold;}
+        .btn-corazon { background-color: white; border: 1px solid #ddd; border-radius: 6px; cursor: pointer; padding: 10px; font-size: 1.2em; transition: 0.2s;}
+        .btn-corazon:hover { background-color: #ffe6e6; border-color: #ffcccc;}
     </style>
 </head>
 <body>
@@ -39,19 +33,18 @@
         <div class="auth-card" id="tarjeta-login">
             <h1>StyleMatch</h1>
             <p style="color: gray;">Iniciar Sesión</p>
-            <input type="email" id="logCorreo" placeholder="Correo" onkeypress="verificarEnter(event, 'login')">
-            <input type="password" id="logPass" placeholder="Contraseña" onkeypress="verificarEnter(event, 'login')">
+            <input type="email" id="logCorreo" placeholder="Correo electrónico">
+            <input type="password" id="logPass" placeholder="Contraseña">
             <button onclick="hacerLogin()">Ingresar</button>
             <span class="link-cambio" onclick="cambiarFormulario('registro')">¿No tienes cuenta? Regístrate aquí</span>
         </div>
 
         <div class="auth-card" id="tarjeta-registro" style="display: none;">
             <h1>Nueva Cuenta</h1>
-            <p style="color: gray;">Únete a StyleMatch</p>
             <input type="text" id="regNombre" placeholder="Tu Nombre">
-            <input type="text" id="regApellido" placeholder="Tu apellido">
-            <input type="email" id="regCorreo" placeholder="Tu Correo electrónico" onkeypress="verificarEnter(event, 'registro')">
-            <input type="password" id="regPass" placeholder="Crea una Contraseña" onkeypress="verificarEnter(event, 'registro')">
+            <input type="text" id="regApellido" placeholder="Tu Apellido">
+            <input type="email" id="regCorreo" placeholder="Tu Correo electrónico">
+            <input type="password" id="regPass" placeholder="Crea una Contraseña">
             <button onclick="hacerRegistro()" style="background-color: #28a745;">Crear Cuenta</button>
             <span class="link-cambio" style="color: #666;" onclick="cambiarFormulario('login')">Volver al Login</span>
         </div>
@@ -60,7 +53,11 @@
     <div id="pantalla-catalogo" style="display: none;">
         <div class="cabecera-tienda">
             <h2 id="mensaje-bienvenida" style="margin: 0;">Catálogo</h2> 
-            <button class="btn-salir" onclick="cerrarSesion()">Cerrar Sesión</button>
+            <div>
+                <button id="btnVolver" class="btn-volver" onclick="volverAlCatalogo()">🔙 Volver</button>
+                <button id="btnFavs" class="btn-favoritos" onclick="verMisFavoritos()">❤️ Mis Favoritos</button>
+                <button class="btn-salir" onclick="cerrarSesion()">Cerrar Sesión</button>
+            </div>
         </div>
         <div id="catalogo" style="text-align: center; padding: 30px;">
             <h2>Cargando productos...</h2>
@@ -68,67 +65,38 @@
     </div>
 
     <script>
-        window.onload = function() {
-            const usuarioGuardado = localStorage.getItem('usuario_sesion');
-            if (usuarioGuardado) {
-                mostrarCatalogo(usuarioGuardado);
+        document.addEventListener("DOMContentLoaded", () => {
+            const idUsuario = localStorage.getItem('id_usuario');
+            const nombreUsuario = localStorage.getItem('nombre_usuario');
+            if (idUsuario && nombreUsuario) {
+                mostrarCatalogo("¡Hola, " + nombreUsuario + "!");
             }
-        };
+        });
 
-        // función cambiar formulario, osea cambiar para crear un nuevo usuario.
         function cambiarFormulario(tipo) {
-            if(tipo === 'registro') {
-                document.getElementById('tarjeta-login').style.display = 'none';
-                document.getElementById('tarjeta-registro').style.display = 'block';
-            } else {
-                document.getElementById('tarjeta-registro').style.display = 'none';
-                document.getElementById('tarjeta-login').style.display = 'block';
-            }
+            document.getElementById('tarjeta-login').style.display = tipo === 'registro' ? 'none' : 'block';
+            document.getElementById('tarjeta-registro').style.display = tipo === 'registro' ? 'block' : 'none';
         }
 
-        function verificarEnter(evento, tipo) {
-            if (evento.key === "Enter") {
-                if(tipo === 'login') hacerLogin();
-                if(tipo === 'registro') hacerRegistro();
-            }
-        }
-
-        // función de registrar usuario
         function hacerRegistro() {
             const nombre = document.getElementById('regNombre').value;
             const apellido = document.getElementById('regApellido').value;
             const correo = document.getElementById('regCorreo').value;
             const contrasenia = document.getElementById('regPass').value;
 
-            if(!nombre || !apellido ||!correo || !contrasenia) {
-                alert("Llena todos los campos");
-                return;
-            }
-
-            const datos = {
-                nombre: nombre,
-                apellido: apellido,
-                correo: correo,
-                contrasenia: contrasenia
-            };
+            if(!nombre || !correo || !contrasenia) { alert("Nombre, correo y contraseña son obligatorios"); return; }
+            const datos = { nombre: nombre, apellido: apellido, correo: correo, contrasenia: contrasenia };
 
             fetch('http://localhost:8080/api/registro', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(datos)
-            })
-            .then(respuesta => respuesta.text().then(texto => {
-                if (respuesta.ok) {
-                    alert(texto);
-                    cambiarFormulario('login');
-                }   else {
-                    alert("Error del servidor: " + texto);
-                }
-            }))
-            .catch(error => console.error("Error:", error));
+            }).then(respuesta => respuesta.text().then(texto => {
+                alert(texto);
+                if (respuesta.ok) cambiarFormulario('login');
+            })).catch(error => alert("Error de conexión con el servidor."));
         }
 
-        // Función del login
         function hacerLogin() {
             const correo = document.getElementById('logCorreo').value;
             const contrasenia = document.getElementById('logPass').value;
@@ -137,51 +105,100 @@
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ correo: correo, contrasenia: contrasenia })
-            })
-            .then(respuesta => {
+            }).then(respuesta => {
                 if (respuesta.ok) {
-                    return respuesta.text().then(texto => {
-                        localStorage.setItem('usuario_sesion', texto); 
-                        mostrarCatalogo(texto);
+                    return respuesta.json().then(usuario => {
+                        const idReal = usuario.idUsuario || usuario.id_usuario || usuario.id;
+                        const nombreReal = usuario.nombre ? usuario.nombre : "Usuario";
+                        localStorage.setItem('id_usuario', idReal); 
+                        localStorage.setItem('nombre_usuario', nombreReal);
+                        mostrarCatalogo("¡Hola, " + nombreReal + "!");
                     });
                 } else {
                     alert("Error: Correo o contraseña incorrectos");
                 }
-            });
+            }).catch(error => alert("Error conectando con el servidor."));
         }
 
-        // función para mostrar el catalogo.
+        function cerrarSesion() {
+            localStorage.clear();
+            location.reload(); 
+        }
+
         function mostrarCatalogo(mensajeBienvenida) {
             document.getElementById('pantalla-auth').style.display = 'none';
             document.getElementById('pantalla-catalogo').style.display = 'block';
             document.getElementById('mensaje-bienvenida').innerText = mensajeBienvenida;
-            cargarProductos();
-        }
+            document.getElementById('btnFavs').style.display = 'inline-block';
+            document.getElementById('btnVolver').style.display = 'none';
 
-        // funcion para cerrar sesion
-        function cerrarSesion() {
-            localStorage.removeItem('usuario_sesion');
-            location.reload();
-        }
-
-        function cargarProductos() {
             fetch('http://localhost:8080/api/productos')
                 .then(respuesta => respuesta.json())
+                .then(productos => dibujarProductos(productos))
+                .catch(error => console.error("Error cargando productos:", error));
+        }
+
+        function volverAlCatalogo() {
+            const nombreUsuario = localStorage.getItem('nombre_usuario');
+            mostrarCatalogo("¡Hola, " + nombreUsuario + "!");
+        }
+        function verMisFavoritos() {
+            const idUsuarioActual = localStorage.getItem('id_usuario');
+            if (!idUsuarioActual) return;
+            document.getElementById('mensaje-bienvenida').innerText = "❤️ Mis Favoritos";
+            document.getElementById('btnFavs').style.display = 'none';
+            document.getElementById('btnVolver').style.display = 'inline-block';
+
+            document.getElementById('catalogo').innerHTML = '<h2>Cargando favoritos...</h2>';
+
+            fetch('http://localhost:8080/api/deseos/usuario/' + idUsuarioActual)
+                .then(respuesta => respuesta.json())
                 .then(productos => {
-                    const contenedor = document.getElementById('catalogo');
-                    contenedor.innerHTML = '';
-                    productos.forEach(prod => {
-                        const precio = prod.precio_venta ? `$${prod.precio_venta.toFixed(2)}` : "Consultar";
-                        contenedor.innerHTML += `
-                            <div class="producto">
-                                <h3 style="margin-top:0;">${prod.nombre}</h3>
-                                <p style="color: gray; font-size:0.9em;">Marca: ${prod.marca}</p>
-                                <p class="precio">${precio}</p>
-                                <button class="btn-comprar" onclick="alert('Añadido: ${prod.nombre}')">🛒 Comprar</button>
-                            </div>
-                        `;
-                    });
-                });
+                    if (productos.length === 0) {
+                        document.getElementById('catalogo').innerHTML = '<h3>Aún no tienes productos en tu lista de deseos 💔</h3>';
+                    } else {
+                        dibujarProductos(productos);
+                    }
+                })
+                .catch(error => console.error("Error cargando favoritos:", error));
+        }
+        function dibujarProductos(productos) {
+            const contenedor = document.getElementById('catalogo');
+            contenedor.innerHTML = '';
+            
+            productos.forEach(prod => {
+                const precio = prod.precio_venta ? `$${prod.precio_venta.toFixed(2)}` : "Consultar";
+                const idProd = prod.id_producto || prod.idProducto || prod.id || 0;
+                
+                contenedor.innerHTML += `
+                    <div class="producto">
+                        <h3 style="margin-top:0;">${prod.nombre}</h3>
+                        <p style="color: gray; font-size:0.9em;">Marca: ${prod.marca}</p>
+                        <p class="precio">${precio}</p>
+                        
+                        <div style="display: flex; gap: 5px; margin-top: 10px;">
+                            <button class="btn-comprar" style="flex-grow: 1;" onclick="alert('Añadido al carrito')">🛒 Comprar</button>
+                            <button class="btn-corazon" onclick="agregarADeseos(${idProd})">❤️</button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function agregarADeseos(idProducto) {
+            if (idProducto === 0) { alert("Error: El producto no tiene un ID válido."); return; }
+            const idUsuarioActual = localStorage.getItem('id_usuario');
+            if (!idUsuarioActual) { alert("Debes iniciar sesión para añadir a deseos."); return; }
+
+            const datos = { id_usuario: parseInt(idUsuarioActual), id_variante: parseInt(idProducto) };
+
+            fetch('http://localhost:8080/api/deseos/agregar', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(datos)
+            })
+            .then(respuesta => respuesta.text().then(texto => alert(texto)))
+            .catch(error => alert("Error de conexión al intentar guardar en favoritos."));
         }
     </script>
 </body>
