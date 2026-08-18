@@ -10,29 +10,26 @@ import java.util.List;
 @RequestMapping("/api/deseos")
 @CrossOrigin(origins = "*")
 public class DeseosController {
-
     @Autowired
     private ListaDeseosRepository deseosRepository;
-
     @Autowired
-    private ProductoRepository productoRepository;
-
+    private ProductoCatalogoRepository vistaRepository;
     @PostMapping("/agregar")
     public ResponseEntity<String> agregarFavorito(@RequestBody ListaDeseos nuevoDeseo) {
         try {
             nuevoDeseo.setFecha_agregado(LocalDate.now());
             deseosRepository.save(nuevoDeseo);
-            return ResponseEntity.ok("Producto añadido a tu lista de deseos");
+            return ResponseEntity.ok("Producto añadido a tu lista de deseos ❤️");
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.status(500).body("Error al añadir el producto a favoritos.");
         }
     }
-
     @GetMapping("/usuario/{idUsuario}")
     public ResponseEntity<?> verMisFavoritos(@PathVariable int idUsuario) {
         try {
-            List<Producto> misFavoritos = productoRepository.findFavoritosByUsuario(idUsuario);
+            // Buscamos los productos favoritos de este usuario cruzando con la VISTA
+            List<ProductoCatalogo> misFavoritos = vistaRepository.findFavoritosByUsuario(idUsuario);
             return ResponseEntity.ok(misFavoritos);
         } catch (Exception e) {
             e.printStackTrace();
