@@ -24,8 +24,8 @@ public class Descuento {
     public void setIdDescuento(Integer idDescuento) { this.idDescuento = idDescuento; }
 
     public Integer getIdProducto() { return idProducto; }
-    public void setIdProducto(Integer idProducto) { 
-        this.idProducto = idProducto; 
+    public void setIdProducto(Integer idProducto) {
+        this.idProducto = idProducto;
     }
 
     public Integer getPorcentaje() { return porcentaje; }

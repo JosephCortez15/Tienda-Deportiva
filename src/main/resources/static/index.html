@@ -5,7 +5,6 @@
     <title>StyleMatch - Tienda Deportiva</title>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; margin: 0; }
-        
         #pantalla-auth { display: flex; justify-content: center; align-items: center; height: 100vh; background: linear-gradient(135deg, #1f1c2c 0%, #928dab 100%); }
         .auth-card { background: white; padding: 40px 30px; border-radius: 15px; box-shadow: 0 15px 30px rgba(0,0,0,0.3); text-align: center; width: 100%; max-width: 350px; }
         .auth-card h1 { color: #222; margin-top: 0; font-size: 2em; }
@@ -15,16 +14,79 @@
         .link-cambio { color: #007bff; cursor: pointer; font-size: 0.9em; margin-top: 15px; display: block; text-decoration: underline;}
 
         .cabecera-tienda { background-color: #1f1c2c; color: white; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; }
-        .btn-salir { background-color: #dc3545; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold;}
-        .btn-favoritos { background-color: #ff4d4d; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; margin-right: 10px; transition: 0.2s;}
-        .btn-favoritos:hover { background-color: #cc0000; }
-        .btn-volver { background-color: #fff; color: #1f1c2c; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; margin-right: 10px; display: none;}
-        
-        .producto { background: white; border: 1px solid #eee; padding: 20px; margin: 15px; display: inline-block; border-radius: 12px; width: 220px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        .precio { color: #28a745; font-weight: bold; font-size: 1.5em; margin: 10px 0;}
+        .btn-accion { padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; border: none; margin-left: 5px; transition: 0.2s;}
+        .btn-salir { background-color: #dc3545; color: white; }
+        .btn-favoritos { background-color: #ff4d4d; color: white; }
+        .btn-volver { background-color: #fff; color: #1f1c2c; display: none;}
+        .btn-carrito { background-color: #28a745; color: white; }
+        .btn-probador { background-color: #8e44ad; color: white; }
+
+        /* BARRA DE CATEGORIAS */
+        .barra-categorias { display: flex; justify-content: center; gap: 15px; margin: 25px 0 10px 0; }
+        .btn-categoria { padding: 8px 20px; border-radius: 20px; background: white; border: 1px solid #ccc; cursor: pointer; font-weight: bold; color: #555; transition: 0.2s; }
+        .btn-categoria:hover { border-color: #1f1c2c; color: #1f1c2c; }
+        .btn-categoria.activo { background: #1f1c2c; color: white; border-color: #1f1c2c; }
+
+        .producto { background: white; border: 1px solid #eee; padding: 20px; margin: 15px; display: inline-block; border-radius: 12px; width: 220px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05); position: relative; vertical-align: top;}
+        .producto-img-box { width: 100%; height: 150px; background-color: #fff; border-radius: 8px; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; overflow: hidden; border: 1px solid #ddd;}
+        .producto-img-box img { width: 100%; height: 100%; object-fit: contain; }
+        .precio { font-weight: bold; font-size: 1.5em; margin: 10px 0;}
         .btn-comprar { background-color: #007bff; color: white; border: none; padding: 10px; cursor: pointer; border-radius: 6px; font-weight: bold;}
-        .btn-corazon { background-color: white; border: 1px solid #ddd; border-radius: 6px; cursor: pointer; padding: 10px; font-size: 1.2em; transition: 0.2s;}
-        .btn-corazon:hover { background-color: #ffe6e6; border-color: #ffcccc;}
+        .btn-corazon { background-color: white; border: 1px solid #ddd; border-radius: 6px; cursor: pointer; padding: 10px; font-size: 0.9em; font-weight: bold;}
+        .id-badge { position: absolute; top: 10px; right: 10px; background: #eee; padding: 3px 6px; border-radius: 4px; font-size: 0.7em; color: #555; font-weight:bold;}
+
+        .carrito-container { max-width: 800px; margin: 20px auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); text-align: left; }
+        .carrito-item { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; padding: 15px 0; }
+        .btn-eliminar { background: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; }
+        .resumen-caja { background: #f8f9fa; padding: 20px; border-radius: 8px; margin-top: 20px; text-align: right; }
+        .cupon-box { display: flex; justify-content: flex-end; gap: 10px; margin-bottom: 15px; }
+        .cupon-box input { padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+        .btn-pagar { background: #28a745; color: white; border: none; padding: 12px 25px; font-size: 1.2em; border-radius: 5px; cursor: pointer; font-weight: bold; width: 100%; margin-top: 15px;}
+
+        /* ESTILOS PROBADOR VIRTUAL Y MANIQUI REAL */
+        .layout-probador { display: flex; max-width: 1100px; margin: 20px auto; gap: 20px; }
+        .panel-inventario { flex: 2; background: white; padding: 20px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); max-height: 750px; overflow-y: auto;}
+        
+        .panel-maniqui { flex: 1.2; background: #fdfdfd; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); display: flex; flex-direction: column; align-items: center; position: relative; padding-bottom: 20px;}
+        .controles-maniqui { width: 100%; display: flex; justify-content: center; gap: 10px; padding: 15px 0; background: #fff; border-radius: 12px 12px 0 0; border-bottom: 1px solid #eee; z-index: 10;}
+        .controles-maniqui button { padding: 8px 15px; border: 1px solid #ddd; border-radius: 6px; cursor: pointer; font-weight: bold; background-color: #f9f9f9; color: #555;}
+        .controles-maniqui button.activo { background-color: #1f1c2c; color: white; border-color: #1f1c2c; }
+        
+        .contenedor-silueta { position: relative; width: 100%; height: 500px; background-color: #fff; border-bottom: 1px solid #eee; overflow: hidden; border-radius: 0 0 8px 8px;}
+        .fondo-silueta { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-position: center bottom; background-size: contain; background-repeat: no-repeat; z-index: 1; transition: background-image 0.3s;}
+        
+        .silueta-varon { background-image: url('img/varon1.jpg'); }
+        .silueta-mujer { background-image: url('img/mujer.png'); }
+        
+        .slot-prenda { position: absolute; left: 50%; transform: translateX(-50%); z-index: 2; display: flex; justify-content: center; align-items: center; pointer-events: none; background: transparent !important; border: none !important;}
+        .slot-prenda img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.25)); transition: all 0.2s;}
+        
+        .contenedor-silueta.varon #slot-superior { top: 15%; width: 55%; height: 35%; }
+        .contenedor-silueta.varon #slot-inferior { top: 48%; width: 45%; height: 42%; }
+        .contenedor-silueta.varon #slot-calzado { top: 85%; width: 35%; height: 12%; }
+
+        .contenedor-silueta.mujer #slot-superior { top: 22%; width: 45%; height: 30%; }
+        .contenedor-silueta.mujer #slot-inferior { top: 50%; width: 40%; height: 38%; }
+        .contenedor-silueta.mujer #slot-calzado { top: 86%; width: 30%; height: 10%; }
+        
+        .detalles-resumen { width: 85%; text-align: center; margin-top: 15px; z-index: 10;}
+        .lista-resumen-prendas { background: #f4f7f6; padding: 10px; border-radius: 8px; font-size: 0.9em; text-align: left; margin-bottom: 10px;}
+        .lista-resumen-prendas div { display: flex; justify-content: space-between; border-bottom: 1px solid #ddd; padding: 5px 0;}
+        .lista-resumen-prendas div:last-child { border-bottom: none;}
+
+        .categoria-titulo { border-bottom: 2px solid #eee; padding-bottom: 5px; margin-top: 20px; color: #1f1c2c; }
+        .lista-mini-productos { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+        .tarjeta-mini { border: 1px solid #ddd; padding: 10px; border-radius: 6px; width: 130px; text-align: center; cursor: pointer; transition: 0.2s; background: white;}
+        .tarjeta-mini:hover { border-color: #8e44ad; background-color: #f9f9f9; transform: translateY(-3px); box-shadow: 0 4px 8px rgba(0,0,0,0.1);}
+        .mini-img-box { width: 100%; height: 80px; background-color: #fff; border-radius: 4px; margin-bottom: 8px; overflow: hidden; display: flex; align-items: center; justify-content: center;}
+        .mini-img-box img { width: 100%; height: 100%; object-fit: contain; }
+
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); display: none; justify-content: center; align-items: center; z-index: 1000; }
+        .modal-box { background: white; padding: 30px; border-radius: 12px; width: 320px; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
+        .modal-box h3 { margin-top: 0; color: #1f1c2c; }
+        .modal-box input { width: 90%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 6px; }
+        .modal-btn-guardar { background-color: #28a745; color: white; border: none; padding: 10px; width: 100%; border-radius: 6px; cursor: pointer; font-weight: bold; margin-bottom: 10px;}
+        .modal-btn-cancelar { background-color: #dc3545; color: white; border: none; padding: 10px; width: 100%; border-radius: 6px; cursor: pointer; font-weight: bold;}
     </style>
 </head>
 <body>
@@ -32,45 +94,168 @@
     <div id="pantalla-auth">
         <div class="auth-card" id="tarjeta-login">
             <h1>StyleMatch</h1>
-            <p style="color: gray;">Iniciar Sesión</p>
-            <input type="email" id="logCorreo" placeholder="Correo electrónico">
-            <input type="password" id="logPass" placeholder="Contraseña">
+            <p style="color: gray;">Iniciar Sesion</p>
+            <input type="email" id="logCorreo" placeholder="Correo electronico">
+            <input type="password" id="logPass" placeholder="Contrasena">
             <button onclick="hacerLogin()">Ingresar</button>
-            <span class="link-cambio" onclick="cambiarFormulario('registro')">¿No tienes cuenta? Regístrate aquí</span>
+            <span class="link-cambio" onclick="cambiarFormulario('registro')">Crear una cuenta nueva</span>
         </div>
 
         <div class="auth-card" id="tarjeta-registro" style="display: none;">
             <h1>Nueva Cuenta</h1>
-            <input type="text" id="regNombre" placeholder="Tu Nombre">
-            <input type="text" id="regApellido" placeholder="Tu Apellido">
-            <input type="email" id="regCorreo" placeholder="Tu Correo electrónico">
-            <input type="password" id="regPass" placeholder="Crea una Contraseña">
-            <button onclick="hacerRegistro()" style="background-color: #28a745;">Crear Cuenta</button>
-            <span class="link-cambio" style="color: #666;" onclick="cambiarFormulario('login')">Volver al Login</span>
+            <input type="text" id="regNombre" placeholder="Nombre">
+            <input type="text" id="regApellido" placeholder="Apellido">
+            <input type="email" id="regCorreo" placeholder="Correo electronico">
+            <input type="password" id="regPass" placeholder="Contrasena">
+            <button onclick="hacerRegistro()" style="background-color: #28a745;">Registrarse</button>
+            <span class="link-cambio" style="color: #666;" onclick="cambiarFormulario('login')">Volver al inicio de sesion</span>
         </div>
     </div>
 
     <div id="pantalla-catalogo" style="display: none;">
         <div class="cabecera-tienda">
-            <h2 id="mensaje-bienvenida" style="margin: 0;">Catálogo</h2> 
+            <h2 id="mensaje-bienvenida" style="margin: 0;">Catalogo</h2> 
             <div>
-                <button id="btnVolver" class="btn-volver" onclick="volverAlCatalogo()">🔙 Volver</button>
-                <button id="btnFavs" class="btn-favoritos" onclick="verMisFavoritos()">❤️ Mis Favoritos</button>
-                <button class="btn-salir" onclick="cerrarSesion()">Cerrar Sesión</button>
+                <button id="btnVolver" class="btn-accion btn-volver" onclick="volverAlCatalogo()">Volver al Catalogo</button>
+                <button class="btn-accion btn-probador" onclick="abrirProbador()">Probador Virtual</button>
+                <button class="btn-accion btn-carrito" onclick="verCarrito()">Carrito (<span id="contador-carrito">0</span>)</button>
+                <button id="btnFavs" class="btn-accion btn-favoritos" onclick="verMisFavoritos()">Favoritos</button>
+                <button class="btn-accion btn-salir" onclick="cerrarSesion()">Salir</button>
             </div>
         </div>
-        <div id="catalogo" style="text-align: center; padding: 30px;">
-            <h2>Cargando productos...</h2>
+
+        <div id="panel-admin" style="display: none; background-color: #f39c12; color: #fff; padding: 10px 30px; justify-content: space-between; align-items: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+            <span style="font-weight: bold; font-size: 1.1em;">Panel de Administrador</span>
+            <div>
+                <button class="btn-accion" style="background-color: #27ae60; color: white;" onclick="abrirModal('modal-agregar')">Anadir Producto</button>
+                <button class="btn-accion" style="background-color: #2980b9; color: white;" onclick="abrirModal('modal-precio')">Cambiar Precio</button>
+                <button class="btn-accion" style="background-color: #8e44ad; color: white;" onclick="abrirModal('modal-descuento')">Aplicar Descuento</button>
+                <button class="btn-accion" style="background-color: #c0392b; color: white;" onclick="abrirModal('modal-eliminar')">Eliminar Producto</button>
+            </div>
+        </div>
+        
+        <!-- BARRA DE CATEGORÍAS -->
+        <div id="barra-categorias" class="barra-categorias">
+            <button id="btn-filtro-todo" class="btn-categoria activo" onclick="filtrarCatalogo('todo')">Todo el Catalogo</button>
+            <button id="btn-filtro-2" class="btn-categoria" onclick="filtrarCatalogo(2)">Ropa Superior</button>
+            <button id="btn-filtro-3" class="btn-categoria" onclick="filtrarCatalogo(3)">Ropa Inferior</button>
+            <button id="btn-filtro-1" class="btn-categoria" onclick="filtrarCatalogo(1)">Calzado</button>
+        </div>
+
+        <div id="contenido-principal" style="text-align: center; padding: 10px 30px 30px 30px;">
+            <h2>Cargando...</h2>
+        </div>
+    </div>
+
+    <div id="pantalla-probador" style="display: none;">
+        <div class="cabecera-tienda">
+            <h2 style="margin: 0;">Probador Virtual (Outfit Builder)</h2> 
+            <div>
+                <button class="btn-accion btn-volver" style="display: inline-block;" onclick="volverAlCatalogo()">Cerrar Probador</button>
+            </div>
+        </div>
+        <div class="layout-probador">
+            <div class="panel-maniqui">
+                <div class="controles-maniqui">
+                    <button id="btn-varon" class="activo" onclick="cambiarGeneroManiqui('varon')">Maniqui Varon</button>
+                    <button id="btn-mujer" onclick="cambiarGeneroManiqui('mujer')">Maniqui Mujer</button>
+                </div>
+                
+                <div id="contenedor-silueta" class="contenedor-silueta varon">
+                    <div id="fondo-maniqui" class="fondo-silueta silueta-varon"></div>
+                    <div id="slot-superior" class="slot-prenda"></div>
+                    <div id="slot-inferior" class="slot-prenda"></div>
+                    <div id="slot-calzado" class="slot-prenda"></div>
+                </div>
+
+                <div class="detalles-resumen">
+                    <div id="lista-resumen-prendas" class="lista-resumen-prendas">
+                        <div style="color: #999; justify-content: center; border: none;">Ninguna prenda seleccionada</div>
+                    </div>
+                    <h3 style="margin: 10px 0;">Total Conjunto: $<span id="total-outfit">0.00</span></h3>
+                    <button class="btn-pagar" style="margin-top: 5px;" onclick="agregarOutfitAlCarrito()">Anadir Conjunto al Carrito</button>
+                    <button class="btn-accion btn-salir" style="margin-top: 10px; width: 100%;" onclick="limpiarProbador()">Limpiar Maniqui</button>
+                </div>
+            </div>
+            
+            <div class="panel-inventario" id="inventario-probador">
+                <h2>Cargando inventario...</h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODALES DE FUNCIONALIDAD -->
+    <div id="modal-agregar" class="modal-overlay">
+        <div class="modal-box">
+            <h3>Anadir Nuevo Producto</h3>
+            <input type="text" id="nuevoNombre" placeholder="Nombre del Producto">
+            <input type="text" id="nuevaMarca" placeholder="Marca">
+            <input type="number" id="nuevoPrecio" placeholder="Precio Base">
+            <input type="text" id="nuevaDesc" placeholder="Descripcion General">
+            <input type="number" id="nuevoIdCategoria" placeholder="ID Categoria (Ej. 1: Calzado, 2: Sup, 3: Inf)">
+            <input type="number" id="nuevoIdProveedor" placeholder="ID Proveedor">
+            <button class="modal-btn-guardar" onclick="guardarNuevoProducto()">Guardar Producto</button>
+            <button class="modal-btn-cancelar" onclick="cerrarModal('modal-agregar')">Cancelar</button>
+        </div>
+    </div>
+
+    <div id="modal-precio" class="modal-overlay">
+        <div class="modal-box">
+            <h3>Cambiar Precio Base</h3>
+            <input type="number" id="precioIdProducto" placeholder="ID del Producto">
+            <input type="number" id="precioNuevoMonto" placeholder="Nuevo Precio">
+            <button class="modal-btn-guardar" onclick="guardarNuevoPrecio()">Actualizar</button>
+            <button class="modal-btn-cancelar" onclick="cerrarModal('modal-precio')">Cancelar</button>
+        </div>
+    </div>
+
+    <div id="modal-descuento" class="modal-overlay">
+        <div class="modal-box">
+            <h3>Aplicar Descuento</h3>
+            <input type="number" id="descIdProducto" placeholder="ID del Producto">
+            <input type="number" id="descPorcentaje" placeholder="Porcentaje">
+            <button class="modal-btn-guardar" onclick="guardarNuevoDescuento()">Aplicar</button>
+            <button class="modal-btn-cancelar" onclick="cerrarModal('modal-descuento')">Cancelar</button>
+        </div>
+    </div>
+
+    <div id="modal-eliminar" class="modal-overlay">
+        <div class="modal-box">
+            <h3>Eliminar Producto</h3>
+            <input type="number" id="eliminarIdProducto" placeholder="ID del Producto">
+            <button class="modal-btn-guardar" style="background-color: #c0392b;" onclick="borrarProducto()">Confirmar Eliminacion</button>
+            <button class="modal-btn-cancelar" onclick="cerrarModal('modal-eliminar')">Cancelar</button>
+        </div>
+    </div>
+
+    <div id="modal-pago" class="modal-overlay">
+        <div class="modal-box">
+            <h3>Pasarela de Pago</h3>
+            <p style="color: gray; margin-top:0;">Total a cobrar: <b id="monto-cobrar" style="color:#222; font-size:1.2em;"></b></p>
+            <input type="text" id="pagoTarjeta" placeholder="Numero de Tarjeta">
+            <input type="text" id="pagoDireccion" placeholder="Direccion de Envio">
+            <button class="modal-btn-guardar" onclick="confirmarPagoFinal()">Pagar</button>
+            <button class="modal-btn-cancelar" onclick="cerrarModal('modal-pago')">Cancelar</button>
         </div>
     </div>
 
     <script>
+        let miCarrito = JSON.parse(localStorage.getItem('carrito_guardado')) || [];
+        let descuentoCupon = 0;
+        let totalGlobalAPagar = 0;
+        let outfitActual = { superior: null, inferior: null, calzado: null };
+        
+        // Variables globales para el filtro de categorías
+        let catalogoCompleto = [];
+        let descuentosGlobales = [];
+
         document.addEventListener("DOMContentLoaded", () => {
             const idUsuario = localStorage.getItem('id_usuario');
             const nombreUsuario = localStorage.getItem('nombre_usuario');
-            if (idUsuario && nombreUsuario) {
-                mostrarCatalogo("¡Hola, " + nombreUsuario + "!");
-            }
+            if (idUsuario && nombreUsuario) mostrarCatalogo("Hola, " + nombreUsuario + "!");
+            actualizarContadorCarrito();
+            const inputContrasena = document.getElementById("logPass");
+            if(inputContrasena) { inputContrasena.addEventListener("keypress", function(event) { if (event.key === "Enter") { event.preventDefault(); hacerLogin(); } }); }
         });
 
         function cambiarFormulario(tipo) {
@@ -79,127 +264,263 @@
         }
 
         function hacerRegistro() {
-            const nombre = document.getElementById('regNombre').value;
-            const apellido = document.getElementById('regApellido').value;
-            const correo = document.getElementById('regCorreo').value;
-            const contrasenia = document.getElementById('regPass').value;
-
-            if(!nombre || !correo || !contrasenia) { alert("Nombre, correo y contraseña son obligatorios"); return; }
-            const datos = { nombre: nombre, apellido: apellido, correo: correo, contrasenia: contrasenia };
-
-            fetch('http://localhost:8080/api/registro', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(datos)
-            }).then(respuesta => respuesta.text().then(texto => {
-                alert(texto);
-                if (respuesta.ok) cambiarFormulario('login');
-            })).catch(error => alert("Error de conexión con el servidor."));
+            const nombre = document.getElementById('regNombre').value; const apellido = document.getElementById('regApellido').value;
+            const correo = document.getElementById('regCorreo').value; const contrasenia = document.getElementById('regPass').value;
+            if(!nombre || !correo || !contrasenia) { alert("Completa los campos obligatorios"); return; }
+            fetch('http://localhost:8080/api/registro', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ nombre: nombre, apellido: apellido, correo: correo, contrasenia: contrasenia })
+            }).then(r => r.text().then(t => { alert(t); if (r.ok) cambiarFormulario('login'); })).catch(e => alert("Error de conexion."));
         }
-
+        
         function hacerLogin() {
-            const correo = document.getElementById('logCorreo').value;
-            const contrasenia = document.getElementById('logPass').value;
-
-            fetch('http://localhost:8080/api/login', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ correo: correo, contrasenia: contrasenia })
+            const correo = document.getElementById('logCorreo').value; const contrasenia = document.getElementById('logPass').value;
+            fetch('http://localhost:8080/api/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ correo: correo, contrasenia: contrasenia })
             }).then(respuesta => {
-                if (respuesta.ok) {
-                    return respuesta.json().then(usuario => {
+                if (respuesta.ok) { return respuesta.json().then(usuario => {
                         const idReal = usuario.idUsuario || usuario.id_usuario || usuario.id;
                         const nombreReal = usuario.nombre ? usuario.nombre : "Usuario";
-                        localStorage.setItem('id_usuario', idReal); 
-                        localStorage.setItem('nombre_usuario', nombreReal);
-                        mostrarCatalogo("¡Hola, " + nombreReal + "!");
-                    });
-                } else {
-                    alert("Error: Correo o contraseña incorrectos");
-                }
-            }).catch(error => alert("Error conectando con el servidor."));
+                        const esAdmin = (usuario.id_rol == 1 || usuario.idRol == 1 || correo.includes('@stylematch.com'));
+                        localStorage.setItem('id_usuario', idReal); localStorage.setItem('nombre_usuario', nombreReal); localStorage.setItem('es_admin', esAdmin ? 'SI' : 'NO');
+                        mostrarCatalogo("Hola, " + nombreReal + "!"); });
+                } else { alert("Error: Correo o contrasena incorrectos"); }
+            }).catch(e => alert("Error conectando con el servidor."));
         }
 
-        function cerrarSesion() {
-            localStorage.clear();
-            location.reload(); 
-        }
+        function cerrarSesion() { localStorage.clear(); location.reload(); }
 
         function mostrarCatalogo(mensajeBienvenida) {
-            document.getElementById('pantalla-auth').style.display = 'none';
-            document.getElementById('pantalla-catalogo').style.display = 'block';
-            document.getElementById('mensaje-bienvenida').innerText = mensajeBienvenida;
-            document.getElementById('btnFavs').style.display = 'inline-block';
-            document.getElementById('btnVolver').style.display = 'none';
+            document.getElementById('pantalla-auth').style.display = 'none'; document.getElementById('pantalla-probador').style.display = 'none';
+            document.getElementById('pantalla-catalogo').style.display = 'block'; document.getElementById('mensaje-bienvenida').innerText = mensajeBienvenida;
+            document.getElementById('btnFavs').style.display = 'inline-block'; document.getElementById('btnVolver').style.display = 'none';
+            document.getElementById('barra-categorias').style.display = 'flex';
 
-            fetch('http://localhost:8080/api/productos')
-                .then(respuesta => respuesta.json())
-                .then(productos => dibujarProductos(productos))
-                .catch(error => console.error("Error cargando productos:", error));
+            const esAdmin = localStorage.getItem('es_admin');
+            document.getElementById('panel-admin').style.display = (esAdmin === 'SI') ? 'flex' : 'none';
+            document.getElementById('contenido-principal').innerHTML = '<h2>Cargando catalogo...</h2>';
+
+            fetch('http://localhost:8080/api/productos').then(r => r.json()).then(productos => {
+                catalogoCompleto = productos;
+                fetch('http://localhost:8080/api/descuentos').then(res => res.json()).then(descuentos => {
+                    descuentosGlobales = descuentos;
+                    filtrarCatalogo('todo');
+                }).catch(err => { descuentosGlobales = []; filtrarCatalogo('todo'); });
+            }).catch(e => document.getElementById('contenido-principal').innerHTML = '<h2>Error al cargar los productos.</h2>');
+        }
+        
+        function filtrarCatalogo(idFiltro) {
+            document.querySelectorAll('.btn-categoria').forEach(btn => btn.classList.remove('activo'));
+            document.getElementById('btn-filtro-' + idFiltro).classList.add('activo');
+            
+            let productosFiltrados = catalogoCompleto;
+            if (idFiltro !== 'todo') {
+                productosFiltrados = catalogoCompleto.filter(prod => {
+                    const idCat = prod.id_categoria || prod.idCategoria || 1;
+                    return idCat === idFiltro;
+                });
+            }
+            renderizarTarjetas(productosFiltrados, descuentosGlobales);
         }
 
-        function volverAlCatalogo() {
-            const nombreUsuario = localStorage.getItem('nombre_usuario');
-            mostrarCatalogo("¡Hola, " + nombreUsuario + "!");
-        }
-        function verMisFavoritos() {
-            const idUsuarioActual = localStorage.getItem('id_usuario');
-            if (!idUsuarioActual) return;
-            document.getElementById('mensaje-bienvenida').innerText = "❤️ Mis Favoritos";
-            document.getElementById('btnFavs').style.display = 'none';
-            document.getElementById('btnVolver').style.display = 'inline-block';
+        function abrirModal(idModal) { document.getElementById(idModal).style.display = 'flex'; }
+        function cerrarModal(idModal) { document.getElementById(idModal).style.display = 'none'; }
 
-            document.getElementById('catalogo').innerHTML = '<h2>Cargando favoritos...</h2>';
-
-            fetch('http://localhost:8080/api/deseos/usuario/' + idUsuarioActual)
-                .then(respuesta => respuesta.json())
-                .then(productos => {
-                    if (productos.length === 0) {
-                        document.getElementById('catalogo').innerHTML = '<h3>Aún no tienes productos en tu lista de deseos 💔</h3>';
-                    } else {
-                        dibujarProductos(productos);
-                    }
-                })
-                .catch(error => console.error("Error cargando favoritos:", error));
+        function guardarNuevoProducto() {
+            const nombre = document.getElementById('nuevoNombre').value; const marca = document.getElementById('nuevaMarca').value;
+            const precioBase = document.getElementById('nuevoPrecio').value; const desc = document.getElementById('nuevaDesc').value;
+            const idCat = document.getElementById('nuevoIdCategoria').value; const idProv = document.getElementById('nuevoIdProveedor').value;
+            if(!nombre || !marca || !precioBase) { alert("Completa al menos nombre, marca y precio base."); return; }
+            const datos = { nombre: nombre, marca: marca, precioBase: parseFloat(precioBase), precio_base: parseFloat(precioBase), descripcionGeneral: desc, descripcion_general: desc, idCategoria: parseInt(idCat) || 1, id_categoria: parseInt(idCat) || 1, idProveedor: parseInt(idProv) || 1, id_proveedor: parseInt(idProv) || 1 };
+            fetch('http://localhost:8080/api/productos/agregar', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(datos)
+            }).then(r => r.text().then(t => { alert(t); cerrarModal('modal-agregar'); volverAlCatalogo(); })).catch(e => alert("Error de conexion."));
         }
-        function dibujarProductos(productos) {
-            const contenedor = document.getElementById('catalogo');
-            contenedor.innerHTML = '';
+        function guardarNuevoPrecio() {
+            const idProd = document.getElementById('precioIdProducto').value; const nuevoPrecio = document.getElementById('precioNuevoMonto').value;
+            if(!idProd || !nuevoPrecio) { alert("Llena ambos campos por favor."); return; }
+            fetch('http://localhost:8080/api/precios/actualizar', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ idProducto: parseInt(idProd), precioVenta: parseFloat(nuevoPrecio) })
+            }).then(r => r.text().then(t => { alert(t); cerrarModal('modal-precio'); volverAlCatalogo(); })).catch(e => alert("Error de conexion."));
+        }
+        function guardarNuevoDescuento() {
+            const idProd = document.getElementById('descIdProducto').value; const porc = document.getElementById('descPorcentaje').value;
+            if(!idProd || !porc) { alert("Llena ambos campos por favor."); return; }
+            fetch('http://localhost:8080/api/descuentos/agregar', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ idProducto: parseInt(idProd), id_producto: parseInt(idProd), porcentaje: parseInt(porc) })
+            }).then(r => r.text().then(t => { alert(t); cerrarModal('modal-descuento'); volverAlCatalogo(); })).catch(e => alert("Error de conexion."));
+        }
+        function borrarProducto() {
+            const idProd = document.getElementById('eliminarIdProducto').value; if(!idProd) { alert("Ingresa el ID del producto."); return; }
+            fetch('http://localhost:8080/api/productos/eliminar/' + idProd, { method: 'DELETE' }).then(r => r.text().then(t => { alert(t); cerrarModal('modal-eliminar'); volverAlCatalogo(); })).catch(e => alert("Error de conexion."));
+        }
+
+        function volverAlCatalogo() { mostrarCatalogo("Hola, " + localStorage.getItem('nombre_usuario') + "!"); }
+        function agregarAlCarrito(idProducto, nombre, precio) { miCarrito.push({ id: idProducto, nombre: nombre, precio: parseFloat(precio) }); localStorage.setItem('carrito_guardado', JSON.stringify(miCarrito)); actualizarContadorCarrito(); alert("Anadido al carrito: " + nombre); }
+        function actualizarContadorCarrito() { document.getElementById('contador-carrito').innerText = miCarrito.length; }
+
+        function verCarrito() {
+            document.getElementById('mensaje-bienvenida').innerText = "Mi Carrito de Compras"; document.getElementById('btnVolver').style.display = 'inline-block';
+            document.getElementById('btnFavs').style.display = 'inline-block'; document.getElementById('panel-admin').style.display = 'none'; 
+            document.getElementById('barra-categorias').style.display = 'none';
+            document.getElementById('pantalla-probador').style.display = 'none'; document.getElementById('pantalla-catalogo').style.display = 'block';
+            const contenedor = document.getElementById('contenido-principal');
+            if (miCarrito.length === 0) { contenedor.innerHTML = '<h3>Tu carrito esta vacio</h3><button onclick="volverAlCatalogo()" class="btn-comprar">Ver productos</button>'; return; }
+
+            let htmlCarrito = `<div class="carrito-container">`; let subtotal = 0;
+            miCarrito.forEach((item, index) => { subtotal += item.precio; htmlCarrito += `<div class="carrito-item"><span style="font-size: 1.2em;"><b>${item.nombre}</b></span><div><span style="color: #28a745; font-weight: bold; margin-right: 15px;">$${item.precio.toFixed(2)}</span><button class="btn-eliminar" onclick="eliminarDelCarrito(${index})">Quitar</button></div></div>`; });
+            totalGlobalAPagar = subtotal - (subtotal * descuentoCupon / 100);
+            htmlCarrito += `<div class="resumen-caja"><div class="cupon-box"><input type="text" id="codigoCupon" placeholder="Tienes un cupon?"><button class="btn-accion" style="background:#1f1c2c; color:white;" onclick="aplicarCupon()">Aplicar</button></div><p style="font-size: 1.2em; color: gray;">Subtotal: $${subtotal.toFixed(2)}</p>${descuentoCupon > 0 ? `<p style="font-size: 1.2em; color: #dc3545;">Descuento (${descuentoCupon}%): -$${(subtotal * descuentoCupon / 100).toFixed(2)}</p>` : ''}<h2 style="color: #222; font-size: 2em; margin: 10px 0;">Total a Pagar: $${totalGlobalAPagar.toFixed(2)}</h2><button class="btn-pagar" onclick="iniciarPago()">Proceder al Pago Seguro</button></div></div>`;
+            contenedor.innerHTML = htmlCarrito;
+        }
+
+        function eliminarDelCarrito(index) { miCarrito.splice(index, 1); localStorage.setItem('carrito_guardado', JSON.stringify(miCarrito)); actualizarContadorCarrito(); verCarrito(); }
+        function aplicarCupon() { const codigo = document.getElementById('codigoCupon').value.toUpperCase(); if (codigo === "STYLE20") { descuentoCupon = 20; alert("Cupon del 20% aplicado."); } else if (codigo === "VERANO10") { descuentoCupon = 10; alert("Cupon del 10% aplicado."); } else { descuentoCupon = 0; alert("Cupon invalido o expirado."); } verCarrito(); }
+        function iniciarPago() { if(miCarrito.length === 0) return; document.getElementById('monto-cobrar').innerText = "$" + totalGlobalAPagar.toFixed(2); abrirModal('modal-pago'); }
+        function confirmarPagoFinal() {
+            const tarjeta = document.getElementById('pagoTarjeta').value; const direccion = document.getElementById('pagoDireccion').value;
+            if(tarjeta.length < 10 || direccion.length < 5) { alert("Por favor ingresa un numero valido y direccion."); return; }
+            alert("Pago procesado con exito.\nTu pedido ha sido registrado.\nGracias por comprar en StyleMatch!");
+            miCarrito = []; descuentoCupon = 0; localStorage.removeItem('carrito_guardado'); actualizarContadorCarrito(); cerrarModal('modal-pago'); volverAlCatalogo();
+        }
+
+        function generarUrlImagen(nombre) { return `img/${nombre}.png`; }
+
+        function renderizarTarjetas(productos, descuentos) {
+            const contenedor = document.getElementById('contenido-principal'); contenedor.innerHTML = '';
+            const esAdmin = localStorage.getItem('es_admin') === 'SI';
+            
+            if (productos.length === 0) { contenedor.innerHTML = '<h3>No hay productos en esta categoria</h3>'; return; }
             
             productos.forEach(prod => {
-                const precio = prod.precio_venta ? `$${prod.precio_venta.toFixed(2)}` : "Consultar";
-                const idProd = prod.id_producto || prod.idProducto || prod.id || 0;
+                const idProd = prod.id_producto || prod.idProducto || prod.id || 0; const idCat = prod.id_categoria || prod.idCategoria || 1;
+                const precioReal = prod.precio_venta || prod.precioVenta || prod.precio || prod.precio_base || 0; 
+                const descEncontrado = descuentos.find(d => (d.id_producto || d.idProducto) === idProd);
+                const porcentaje = descEncontrado ? (descEncontrado.porcentaje || descEncontrado.valor || descEncontrado.descuento || 0) : 0;
+                let precioFinal = precioReal; let htmlPrecio = '';
+                if (porcentaje > 0 && precioReal > 0) {
+                    precioFinal = precioReal - (precioReal * porcentaje / 100);
+                    htmlPrecio = `<p class="precio" style="margin: 10px 0;"><span style="text-decoration: line-through; color: #999; font-size: 0.7em;">$${parseFloat(precioReal).toFixed(2)}</span><span style="color: #e74c3c; font-weight: bold; margin-left: 8px;">$${parseFloat(precioFinal).toFixed(2)}</span><span style="background-color: #e74c3c; color: white; font-size: 0.5em; padding: 2px 5px; border-radius: 3px; vertical-align: top;">-${porcentaje}%</span></p>`;
+                } else { htmlPrecio = `<p class="precio" style="color: #28a745; margin: 10px 0;">$${parseFloat(precioReal).toFixed(2)}</p>`; }
+                
+                const htmlIdAdmin = esAdmin ? `<span class="id-badge">ID: ${idProd}</span>` : '';
+                const nombreLimpio = prod.nombre.replace(/'/g, "\\'"); 
+                const urlImg = generarUrlImagen(prod.nombre);
                 
                 contenedor.innerHTML += `
                     <div class="producto">
-                        <h3 style="margin-top:0;">${prod.nombre}</h3>
-                        <p style="color: gray; font-size:0.9em;">Marca: ${prod.marca}</p>
-                        <p class="precio">${precio}</p>
-                        
-                        <div style="display: flex; gap: 5px; margin-top: 10px;">
-                            <button class="btn-comprar" style="flex-grow: 1;" onclick="alert('Añadido al carrito')">🛒 Comprar</button>
-                            <button class="btn-corazon" onclick="agregarADeseos(${idProd})">❤️</button>
+                        ${htmlIdAdmin}
+                        <div class="producto-img-box">
+                            <img src="${urlImg}" onerror="this.src='https://dummyimage.com/200x200/ffffff/cccccc&text=Sin+Foto'" alt="${prod.nombre}">
                         </div>
-                    </div>
-                `;
+                        <h3 style="margin-top:0; font-size: 1.1em;">${prod.nombre}</h3>
+                        <p style="color: gray; font-size:0.9em; margin: 5px 0;">Marca: ${prod.marca}</p>
+                        ${htmlPrecio}
+                        <div style="display: flex; gap: 5px; margin-top: 10px;">
+                            <button class="btn-comprar" style="flex-grow: 1;" onclick="agregarAlCarrito(${idProd}, '${nombreLimpio}', ${precioFinal})">Anadir</button>
+                            <button class="btn-corazon" onclick="agregarADeseos(${idProd})">Fav</button>
+                        </div>
+                    </div>`;
             });
         }
 
-        function agregarADeseos(idProducto) {
-            if (idProducto === 0) { alert("Error: El producto no tiene un ID válido."); return; }
-            const idUsuarioActual = localStorage.getItem('id_usuario');
-            if (!idUsuarioActual) { alert("Debes iniciar sesión para añadir a deseos."); return; }
-
-            const datos = { id_usuario: parseInt(idUsuarioActual), id_variante: parseInt(idProducto) };
-
-            fetch('http://localhost:8080/api/deseos/agregar', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(datos)
-            })
-            .then(respuesta => respuesta.text().then(texto => alert(texto)))
-            .catch(error => alert("Error de conexión al intentar guardar en favoritos."));
+        // --- PROBADOR VIRTUAL ---
+        function cambiarGeneroManiqui(genero) {
+            document.getElementById('btn-varon').classList.remove('activo'); document.getElementById('btn-mujer').classList.remove('activo');
+            document.getElementById('btn-' + genero).classList.add('activo');
+            const fondo = document.getElementById('fondo-maniqui');
+            fondo.classList.remove('silueta-varon', 'silueta-mujer'); fondo.classList.add('silueta-' + genero);
+            const contenedor = document.getElementById('contenedor-silueta');
+            contenedor.classList.remove('varon', 'mujer'); contenedor.classList.add(genero);
         }
+
+        function abrirProbador() {
+            document.getElementById('pantalla-catalogo').style.display = 'none'; document.getElementById('pantalla-probador').style.display = 'block';
+            document.getElementById('inventario-probador').innerHTML = '<h2>Cargando inventario...</h2>';
+            fetch('http://localhost:8080/api/productos').then(r => r.json()).then(productos => {
+                fetch('http://localhost:8080/api/descuentos').then(res => res.json()).then(descuentos => dibujarInventarioProbador(productos, descuentos)).catch(err => dibujarInventarioProbador(productos, []));
+            }).catch(e => document.getElementById('inventario-probador').innerHTML = '<h2>Error al cargar el inventario.</h2>');
+        }
+
+        function dibujarInventarioProbador(productos, descuentos) {
+            let htmlSuperior = '<h4 class="categoria-titulo">Ropa Superior</h4><div class="lista-mini-productos">';
+            let htmlInferior = '<h4 class="categoria-titulo">Ropa Inferior</h4><div class="lista-mini-productos">';
+            let htmlCalzado = '<h4 class="categoria-titulo">Calzado</h4><div class="lista-mini-productos">';
+            productos.forEach(prod => {
+                const idProd = prod.id_producto || prod.idProducto || prod.id || 0; const idCat = prod.id_categoria || prod.idCategoria || 1;
+                const precioReal = prod.precio_venta || prod.precioVenta || prod.precio || prod.precio_base || 0; 
+                const descEncontrado = descuentos.find(d => (d.id_producto || d.idProducto) === idProd);
+                const porcentaje = descEncontrado ? (descEncontrado.porcentaje || descEncontrado.valor || descEncontrado.descuento || 0) : 0;
+                let precioFinal = precioReal; if (porcentaje > 0 && precioReal > 0) precioFinal = precioReal - (precioReal * porcentaje / 100);
+                const nombreLimpio = prod.nombre.replace(/'/g, "\\'"); 
+                const urlImg = generarUrlImagen(prod.nombre);
+                
+                const tarjetaHtml = `
+                    <div class="tarjeta-mini" onclick="equiparEnManiqui(${idProd}, '${nombreLimpio}', ${precioFinal}, ${idCat}, '${urlImg}')">
+                        <div class="mini-img-box">
+                            <img src="${urlImg}" onerror="this.src='https://dummyimage.com/200x200/ffffff/cccccc&text=Sin+Foto'">
+                        </div>
+                        <p style="font-weight: bold; margin: 0 0 5px 0; font-size: 0.8em; line-height: 1.1;">${prod.nombre}</p>
+                        <p style="color: #28a745; margin: 0; font-size: 0.9em; font-weight: bold;">$${parseFloat(precioFinal).toFixed(2)}</p>
+                    </div>`;
+                    
+                if(idCat === 2) htmlSuperior += tarjetaHtml;
+                else if(idCat === 3) htmlInferior += tarjetaHtml;
+                else htmlCalzado += tarjetaHtml; 
+            });
+            document.getElementById('inventario-probador').innerHTML = htmlSuperior + '</div>' + htmlInferior + '</div>' + htmlCalzado + '</div>';
+        }
+
+        function equiparEnManiqui(idProducto, nombre, precio, categoria, urlImg) {
+            const prenda = { id: idProducto, nombre: nombre, precio: parseFloat(precio), img: urlImg };
+            if (categoria === 2) outfitActual.superior = prenda;
+            else if (categoria === 3) outfitActual.inferior = prenda;
+            else outfitActual.calzado = prenda;
+            actualizarManiquiVisual();
+        }
+
+        function actualizarManiquiVisual() {
+            const slotSup = document.getElementById('slot-superior'); const slotInf = document.getElementById('slot-inferior'); const slotCal = document.getElementById('slot-calzado');
+            const listaResumen = document.getElementById('lista-resumen-prendas');
+            let total = 0; let htmlResumen = '';
+            
+            if (outfitActual.superior) { 
+                slotSup.innerHTML = `<img src="${outfitActual.superior.img}" onerror="this.src='https://dummyimage.com/200x200/ffffff/cccccc&text=Sin+Foto'">`; 
+                total += outfitActual.superior.precio;
+                htmlResumen += `<div><span>Superior: ${outfitActual.superior.nombre}</span><b>$${outfitActual.superior.precio.toFixed(2)}</b></div>`;
+            } else { slotSup.innerHTML = ''; }
+            
+            if (outfitActual.inferior) { 
+                slotInf.innerHTML = `<img src="${outfitActual.inferior.img}" onerror="this.src='https://dummyimage.com/200x200/ffffff/cccccc&text=Sin+Foto'">`; 
+                total += outfitActual.inferior.precio;
+                htmlResumen += `<div><span>Inferior: ${outfitActual.inferior.nombre}</span><b>$${outfitActual.inferior.precio.toFixed(2)}</b></div>`;
+            } else { slotInf.innerHTML = ''; }
+            
+            if (outfitActual.calzado) { 
+                slotCal.innerHTML = `<img src="${outfitActual.calzado.img}" onerror="this.src='https://dummyimage.com/200x200/ffffff/cccccc&text=Sin+Foto'">`; 
+                total += outfitActual.calzado.precio;
+                htmlResumen += `<div><span>Calzado: ${outfitActual.calzado.nombre}</span><b>$${outfitActual.calzado.precio.toFixed(2)}</b></div>`;
+            } else { slotCal.innerHTML = ''; }
+            
+            document.getElementById('total-outfit').innerText = total.toFixed(2);
+            
+            if(htmlResumen === '') {
+                listaResumen.innerHTML = '<div style="color: #999; justify-content: center; border: none;">Ninguna prenda seleccionada</div>';
+            } else {
+                listaResumen.innerHTML = htmlResumen;
+            }
+        }
+
+        function limpiarProbador() { outfitActual = { superior: null, inferior: null, calzado: null }; actualizarManiquiVisual(); }
+        function agregarOutfitAlCarrito() {
+            let agregados = 0;
+            if (outfitActual.superior) { miCarrito.push(outfitActual.superior); agregados++; }
+            if (outfitActual.inferior) { miCarrito.push(outfitActual.inferior); agregados++; }
+            if (outfitActual.calzado) { miCarrito.push(outfitActual.calzado); agregados++; }
+            if (agregados > 0) { localStorage.setItem('carrito_guardado', JSON.stringify(miCarrito)); actualizarContadorCarrito(); alert("Conjunto anadido al carrito con exito."); verCarrito(); } 
+            else { alert("Selecciona al menos una prenda."); }
+        }
+
+        function verMisFavoritos() {
+            const idUsuarioActual = localStorage.getItem('id_usuario'); if (!idUsuarioActual) return;
+            document.getElementById('mensaje-bienvenida').innerText = "Mis Favoritos"; document.getElementById('btnFavs').style.display = 'none'; document.getElementById('btnVolver').style.display = 'inline-block'; document.getElementById('panel-admin').style.display = 'none'; document.getElementById('pantalla-probador').style.display = 'none'; document.getElementById('barra-categorias').style.display = 'none'; document.getElementById('pantalla-catalogo').style.display = 'block'; document.getElementById('contenido-principal').innerHTML = '<h2>Cargando favoritos...</h2>';
+            fetch('http://localhost:8080/api/deseos/usuario/' + idUsuarioActual).then(r => r.json()).then(productos => { if (productos.length === 0) document.getElementById('contenido-principal').innerHTML = '<h3>Aun no tienes productos en tu lista de deseos</h3>'; else renderizarTarjetas(productos, []); }).catch(e => console.error("Error:", e));
+        }
+        function agregarADeseos(idProducto) { const idUsuarioActual = localStorage.getItem('id_usuario'); fetch('http://localhost:8080/api/deseos/agregar', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id_usuario: parseInt(idUsuarioActual), id_variante: parseInt(idProducto) }) }).then(r => r.text().then(t => alert(t))); }
     </script>
 </body>
 </html>
