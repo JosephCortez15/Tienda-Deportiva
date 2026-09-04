@@ -17,11 +17,12 @@
         .btn-accion { padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; border: none; margin-left: 5px; transition: 0.2s;}
         .btn-salir { background-color: #dc3545; color: white; }
         .btn-favoritos { background-color: #ff4d4d; color: white; }
+        .btn-compras { background-color: #f39c12; color: white; }
         .btn-volver { background-color: #fff; color: #1f1c2c; display: none;}
         .btn-carrito { background-color: #28a745; color: white; }
         .btn-probador { background-color: #8e44ad; color: white; }
+        .btn-tienda-puntos { background-color: #f1c40f; color: #1f1c2c; }
 
-        /* BARRA DE CATEGORIAS */
         .barra-categorias { display: flex; justify-content: center; gap: 15px; margin: 25px 0 10px 0; }
         .btn-categoria { padding: 8px 20px; border-radius: 20px; background: white; border: 1px solid #ccc; cursor: pointer; font-weight: bold; color: #555; transition: 0.2s; }
         .btn-categoria:hover { border-color: #1f1c2c; color: #1f1c2c; }
@@ -32,7 +33,9 @@
         .producto-img-box img { width: 100%; height: 100%; object-fit: contain; }
         .precio { font-weight: bold; font-size: 1.5em; margin: 10px 0;}
         .btn-comprar { background-color: #007bff; color: white; border: none; padding: 10px; cursor: pointer; border-radius: 6px; font-weight: bold;}
+        .btn-agotado { background-color: #ccc; color: #666; border: none; padding: 10px; cursor: not-allowed; border-radius: 6px; font-weight: bold;}
         .btn-corazon { background-color: white; border: 1px solid #ddd; border-radius: 6px; cursor: pointer; padding: 10px; font-size: 0.9em; font-weight: bold;}
+        .btn-estrella { background-color: #f39c12; color: white; border: none; border-radius: 6px; cursor: pointer; padding: 10px; font-size: 0.9em; font-weight: bold;}
         .id-badge { position: absolute; top: 10px; right: 10px; background: #eee; padding: 3px 6px; border-radius: 4px; font-size: 0.7em; color: #555; font-weight:bold;}
 
         .carrito-container { max-width: 800px; margin: 20px auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); text-align: left; }
@@ -40,31 +43,24 @@
         .btn-eliminar { background: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; }
         .resumen-caja { background: #f8f9fa; padding: 20px; border-radius: 8px; margin-top: 20px; text-align: right; }
         .cupon-box { display: flex; justify-content: flex-end; gap: 10px; margin-bottom: 15px; }
-        .cupon-box input { padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+        .cupon-box input { padding: 8px; border: 1px solid #ccc; border-radius: 4px; width: 180px; }
         .btn-pagar { background: #28a745; color: white; border: none; padding: 12px 25px; font-size: 1.2em; border-radius: 5px; cursor: pointer; font-weight: bold; width: 100%; margin-top: 15px;}
 
-        /* ESTILOS PROBADOR VIRTUAL Y MANIQUI REAL */
         .layout-probador { display: flex; max-width: 1100px; margin: 20px auto; gap: 20px; }
         .panel-inventario { flex: 2; background: white; padding: 20px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); max-height: 750px; overflow-y: auto;}
-        
         .panel-maniqui { flex: 1.2; background: #fdfdfd; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); display: flex; flex-direction: column; align-items: center; position: relative; padding-bottom: 20px;}
         .controles-maniqui { width: 100%; display: flex; justify-content: center; gap: 10px; padding: 15px 0; background: #fff; border-radius: 12px 12px 0 0; border-bottom: 1px solid #eee; z-index: 10;}
         .controles-maniqui button { padding: 8px 15px; border: 1px solid #ddd; border-radius: 6px; cursor: pointer; font-weight: bold; background-color: #f9f9f9; color: #555;}
         .controles-maniqui button.activo { background-color: #1f1c2c; color: white; border-color: #1f1c2c; }
-        
         .contenedor-silueta { position: relative; width: 100%; height: 500px; background-color: #fff; border-bottom: 1px solid #eee; overflow: hidden; border-radius: 0 0 8px 8px;}
         .fondo-silueta { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-position: center bottom; background-size: contain; background-repeat: no-repeat; z-index: 1; transition: background-image 0.3s;}
-        
         .silueta-varon { background-image: url('img/varon1.jpg'); }
         .silueta-mujer { background-image: url('img/mujer.png'); }
-        
         .slot-prenda { position: absolute; left: 50%; transform: translateX(-50%); z-index: 2; display: flex; justify-content: center; align-items: center; pointer-events: none; background: transparent !important; border: none !important;}
         .slot-prenda img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.25)); transition: all 0.2s;}
-        
         .contenedor-silueta.varon #slot-superior { top: 15%; width: 55%; height: 35%; }
         .contenedor-silueta.varon #slot-inferior { top: 48%; width: 45%; height: 42%; }
         .contenedor-silueta.varon #slot-calzado { top: 85%; width: 35%; height: 12%; }
-
         .contenedor-silueta.mujer #slot-superior { top: 22%; width: 45%; height: 30%; }
         .contenedor-silueta.mujer #slot-inferior { top: 50%; width: 40%; height: 38%; }
         .contenedor-silueta.mujer #slot-calzado { top: 86%; width: 30%; height: 10%; }
@@ -117,24 +113,28 @@
             <h2 id="mensaje-bienvenida" style="margin: 0;">Catalogo</h2> 
             <div>
                 <button id="btnVolver" class="btn-accion btn-volver" onclick="volverAlCatalogo()">Volver al Catalogo</button>
+                <button id="btnTiendaPuntos" class="btn-accion btn-tienda-puntos" onclick="abrirTiendaCupones()">Tienda de Puntos ★</button>
                 <button class="btn-accion btn-probador" onclick="abrirProbador()">Probador Virtual</button>
                 <button class="btn-accion btn-carrito" onclick="verCarrito()">Carrito (<span id="contador-carrito">0</span>)</button>
                 <button id="btnFavs" class="btn-accion btn-favoritos" onclick="verMisFavoritos()">Favoritos</button>
+                <button id="btnCompras" class="btn-accion btn-compras" onclick="verMisCompras()">Mis Compras</button>
                 <button class="btn-accion btn-salir" onclick="cerrarSesion()">Salir</button>
             </div>
         </div>
 
+        <!-- PANEL DE ADMINISTRADOR MEJORADO CON EL BOTÓN "ELEMENTOS OCULTOS" -->
         <div id="panel-admin" style="display: none; background-color: #f39c12; color: #fff; padding: 10px 30px; justify-content: space-between; align-items: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
             <span style="font-weight: bold; font-size: 1.1em;">Panel de Administrador</span>
             <div>
                 <button class="btn-accion" style="background-color: #27ae60; color: white;" onclick="abrirModal('modal-agregar')">Anadir Producto</button>
                 <button class="btn-accion" style="background-color: #2980b9; color: white;" onclick="abrirModal('modal-precio')">Cambiar Precio</button>
-                <button class="btn-accion" style="background-color: #8e44ad; color: white;" onclick="abrirModal('modal-descuento')">Aplicar Descuento</button>
-                <button class="btn-accion" style="background-color: #c0392b; color: white;" onclick="abrirModal('modal-eliminar')">Eliminar Producto</button>
+                <button class="btn-accion" style="background-color: #34495e; color: white;" onclick="abrirModal('modal-stock')">Actualizar Stock</button>
+                <button class="btn-accion" style="background-color: #7f8c8d; color: white;" onclick="abrirElementosOcultos()">Elementos Ocultos</button>
+                <button class="btn-accion" style="background-color: #8e44ad; color: white;" onclick="verBitacora()">Auditoría</button>
+                <button class="btn-accion" style="background-color: #c0392b; color: white;" onclick="abrirModal('modal-eliminar')">Ocultar Producto</button>
             </div>
         </div>
         
-        <!-- BARRA DE CATEGORÍAS -->
         <div id="barra-categorias" class="barra-categorias">
             <button id="btn-filtro-todo" class="btn-categoria activo" onclick="filtrarCatalogo('todo')">Todo el Catalogo</button>
             <button id="btn-filtro-2" class="btn-categoria" onclick="filtrarCatalogo(2)">Ropa Superior</button>
@@ -147,6 +147,7 @@
         </div>
     </div>
 
+    <!-- PANTALLA PROBADOR VIRTUAL -->
     <div id="pantalla-probador" style="display: none;">
         <div class="cabecera-tienda">
             <h2 style="margin: 0;">Probador Virtual (Outfit Builder)</h2> 
@@ -156,371 +157,170 @@
         </div>
         <div class="layout-probador">
             <div class="panel-maniqui">
-                <div class="controles-maniqui">
-                    <button id="btn-varon" class="activo" onclick="cambiarGeneroManiqui('varon')">Maniqui Varon</button>
-                    <button id="btn-mujer" onclick="cambiarGeneroManiqui('mujer')">Maniqui Mujer</button>
-                </div>
-                
-                <div id="contenedor-silueta" class="contenedor-silueta varon">
-                    <div id="fondo-maniqui" class="fondo-silueta silueta-varon"></div>
-                    <div id="slot-superior" class="slot-prenda"></div>
-                    <div id="slot-inferior" class="slot-prenda"></div>
-                    <div id="slot-calzado" class="slot-prenda"></div>
-                </div>
-
-                <div class="detalles-resumen">
-                    <div id="lista-resumen-prendas" class="lista-resumen-prendas">
-                        <div style="color: #999; justify-content: center; border: none;">Ninguna prenda seleccionada</div>
-                    </div>
-                    <h3 style="margin: 10px 0;">Total Conjunto: $<span id="total-outfit">0.00</span></h3>
-                    <button class="btn-pagar" style="margin-top: 5px;" onclick="agregarOutfitAlCarrito()">Anadir Conjunto al Carrito</button>
-                    <button class="btn-accion btn-salir" style="margin-top: 10px; width: 100%;" onclick="limpiarProbador()">Limpiar Maniqui</button>
-                </div>
+                <div class="controles-maniqui"><button id="btn-varon" class="activo" onclick="cambiarGeneroManiqui('varon')">Maniqui Varon</button><button id="btn-mujer" onclick="cambiarGeneroManiqui('mujer')">Maniqui Mujer</button></div>
+                <div id="contenedor-silueta" class="contenedor-silueta varon"><div id="fondo-maniqui" class="fondo-silueta silueta-varon"></div><div id="slot-superior" class="slot-prenda"></div><div id="slot-inferior" class="slot-prenda"></div><div id="slot-calzado" class="slot-prenda"></div></div>
+                <div class="detalles-resumen"><div id="lista-resumen-prendas" class="lista-resumen-prendas"><div style="color: #999; justify-content: center; border: none;">Ninguna prenda seleccionada</div></div><h3 style="margin: 10px 0;">Total Conjunto: $<span id="total-outfit">0.00</span></h3><button class="btn-pagar" style="margin-top: 5px;" onclick="agregarOutfitAlCarrito()">Anadir Conjunto al Carrito</button><button class="btn-accion btn-salir" style="margin-top: 10px; width: 100%;" onclick="limpiarProbador()">Limpiar Maniqui</button></div>
             </div>
-            
-            <div class="panel-inventario" id="inventario-probador">
-                <h2>Cargando inventario...</h2>
-            </div>
+            <div class="panel-inventario" id="inventario-probador"><h2>Cargando inventario...</h2></div>
         </div>
     </div>
 
     <!-- MODALES DE FUNCIONALIDAD -->
-    <div id="modal-agregar" class="modal-overlay">
-        <div class="modal-box">
-            <h3>Anadir Nuevo Producto</h3>
-            <input type="text" id="nuevoNombre" placeholder="Nombre del Producto">
-            <input type="text" id="nuevaMarca" placeholder="Marca">
-            <input type="number" id="nuevoPrecio" placeholder="Precio Base">
-            <input type="text" id="nuevaDesc" placeholder="Descripcion General">
-            <input type="number" id="nuevoIdCategoria" placeholder="ID Categoria (Ej. 1: Calzado, 2: Sup, 3: Inf)">
-            <input type="number" id="nuevoIdProveedor" placeholder="ID Proveedor">
-            <button class="modal-btn-guardar" onclick="guardarNuevoProducto()">Guardar Producto</button>
-            <button class="modal-btn-cancelar" onclick="cerrarModal('modal-agregar')">Cancelar</button>
+    <div id="modal-agregar" class="modal-overlay"><div class="modal-box"><h3>Anadir Nuevo Producto</h3><input type="text" id="nuevoNombre" placeholder="Nombre del Producto"><input type="text" id="nuevaMarca" placeholder="Marca"><input type="number" id="nuevoPrecio" placeholder="Precio Base"><input type="text" id="nuevaDesc" placeholder="Descripcion General"><input type="number" id="nuevoIdCategoria" placeholder="ID Categoria (Ej. 1: Calzado, 2: Sup, 3: Inf)"><input type="number" id="nuevoIdProveedor" placeholder="ID Proveedor"><button class="modal-btn-guardar" onclick="guardarNuevoProducto()">Guardar Producto</button><button class="modal-btn-cancelar" onclick="cerrarModal('modal-agregar')">Cancelar</button></div></div>
+    <div id="modal-precio" class="modal-overlay"><div class="modal-box"><h3>Cambiar Precio Base</h3><input type="number" id="precioIdProducto" placeholder="ID del Producto"><input type="number" id="precioNuevoMonto" placeholder="Nuevo Precio"><button class="modal-btn-guardar" onclick="guardarNuevoPrecio()">Actualizar</button><button class="modal-btn-cancelar" onclick="cerrarModal('modal-precio')">Cancelar</button></div></div>
+    <div id="modal-descuento" class="modal-overlay"><div class="modal-box"><h3>Aplicar Descuento</h3><input type="number" id="descIdProducto" placeholder="ID del Producto"><input type="number" id="descPorcentaje" placeholder="Porcentaje"><button class="modal-btn-guardar" onclick="guardarNuevoDescuento()">Aplicar</button><button class="modal-btn-cancelar" onclick="cerrarModal('modal-descuento')">Cancelar</button></div></div>
+    <div id="modal-eliminar" class="modal-overlay"><div class="modal-box"><h3>Ocultar Producto</h3><input type="number" id="eliminarIdProducto" placeholder="ID del Producto"><button class="modal-btn-guardar" style="background-color: #c0392b;" onclick="borrarProducto()">Ocultar del Catálogo</button><button class="modal-btn-cancelar" onclick="cerrarModal('modal-eliminar')">Cancelar</button></div></div>
+    <div id="modal-stock" class="modal-overlay"><div class="modal-box"><h3>Actualizar Inventario</h3><input type="number" id="stockIdProducto" placeholder="ID del Producto"><input type="number" id="stockNuevo" placeholder="Nuevo Stock Total"><button class="modal-btn-guardar" style="background-color: #34495e;" onclick="guardarNuevoStock()">Actualizar Stock</button><button class="modal-btn-cancelar" onclick="cerrarModal('modal-stock')">Cancelar</button></div></div>
+    <div id="modal-pago" class="modal-overlay"><div class="modal-box"><h3>Pasarela de Pago</h3><p style="color: gray; margin-top:0;">Total a cobrar: <b id="monto-cobrar" style="color:#222; font-size:1.2em;"></b></p><input type="text" id="pagoTarjeta" placeholder="Numero de Tarjeta"><input type="text" id="pagoDireccion" placeholder="Direccion de Envio"><button class="modal-btn-guardar" onclick="confirmarPagoFinal()">Pagar</button><button class="modal-btn-cancelar" onclick="cerrarModal('modal-pago')">Cancelar</button></div></div>
+    
+    <!-- MODAL ELEMENTOS OCULTOS -->
+    <div id="modal-ocultos" class="modal-overlay">
+        <div class="modal-box" style="width: 400px; max-height: 80vh; overflow-y: auto;">
+            <h3>Papelera / Ocultos</h3>
+            <div id="lista-ocultos-contenedor" style="text-align: left; margin-bottom: 15px; max-height: 300px; overflow-y: auto;">
+                Cargando...
+            </div>
+            <button class="modal-btn-cancelar" onclick="cerrarModal('modal-ocultos')">Cerrar</button>
         </div>
     </div>
 
-    <div id="modal-precio" class="modal-overlay">
-        <div class="modal-box">
-            <h3>Cambiar Precio Base</h3>
-            <input type="number" id="precioIdProducto" placeholder="ID del Producto">
-            <input type="number" id="precioNuevoMonto" placeholder="Nuevo Precio">
-            <button class="modal-btn-guardar" onclick="guardarNuevoPrecio()">Actualizar</button>
-            <button class="modal-btn-cancelar" onclick="cerrarModal('modal-precio')">Cancelar</button>
-        </div>
-    </div>
-
-    <div id="modal-descuento" class="modal-overlay">
-        <div class="modal-box">
-            <h3>Aplicar Descuento</h3>
-            <input type="number" id="descIdProducto" placeholder="ID del Producto">
-            <input type="number" id="descPorcentaje" placeholder="Porcentaje">
-            <button class="modal-btn-guardar" onclick="guardarNuevoDescuento()">Aplicar</button>
-            <button class="modal-btn-cancelar" onclick="cerrarModal('modal-descuento')">Cancelar</button>
-        </div>
-    </div>
-
-    <div id="modal-eliminar" class="modal-overlay">
-        <div class="modal-box">
-            <h3>Eliminar Producto</h3>
-            <input type="number" id="eliminarIdProducto" placeholder="ID del Producto">
-            <button class="modal-btn-guardar" style="background-color: #c0392b;" onclick="borrarProducto()">Confirmar Eliminacion</button>
-            <button class="modal-btn-cancelar" onclick="cerrarModal('modal-eliminar')">Cancelar</button>
-        </div>
-    </div>
-
-    <div id="modal-pago" class="modal-overlay">
-        <div class="modal-box">
-            <h3>Pasarela de Pago</h3>
-            <p style="color: gray; margin-top:0;">Total a cobrar: <b id="monto-cobrar" style="color:#222; font-size:1.2em;"></b></p>
-            <input type="text" id="pagoTarjeta" placeholder="Numero de Tarjeta">
-            <input type="text" id="pagoDireccion" placeholder="Direccion de Envio">
-            <button class="modal-btn-guardar" onclick="confirmarPagoFinal()">Pagar</button>
-            <button class="modal-btn-cancelar" onclick="cerrarModal('modal-pago')">Cancelar</button>
+    <!-- MODAL TIENDA DE CUPONES -->
+    <div id="modal-cupones" class="modal-overlay">
+        <div class="modal-box" style="width: 380px; max-height: 85vh; overflow-y: auto;">
+            <h3>Tienda de Recompensas</h3>
+            <div style="background: #1f1c2c; color: white; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                <h2 style="margin:0;">Mis Puntos: <span id="puntos-disponibles-tienda" style="color: #f1c40f;">0</span></h2>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #ddd; padding: 10px 0;"><div style="text-align: left;"><b style="font-size: 1.1em;">Cupón 10%</b><br><span style="color: gray;">Costo: 100 puntos</span></div><button class="btn-accion" style="background: #28a745; color: white; margin:0;" onclick="comprarCupon(100, 10)">Canjear</button></div>
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #ddd; padding: 10px 0;"><div style="text-align: left;"><b style="font-size: 1.1em;">Cupón 20%</b><br><span style="color: gray;">Costo: 200 puntos</span></div><button class="btn-accion" style="background: #28a745; color: white; margin:0;" onclick="comprarCupon(200, 20)">Canjear</button></div>
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #ddd; padding: 10px 0;"><div style="text-align: left;"><b style="font-size: 1.1em;">Cupón 30%</b><br><span style="color: gray;">Costo: 300 puntos</span></div><button class="btn-accion" style="background: #28a745; color: white; margin:0;" onclick="comprarCupon(300, 30)">Canjear</button></div>
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #ddd; padding: 10px 0;"><div style="text-align: left;"><b style="font-size: 1.1em;">Cupón 40%</b><br><span style="color: gray;">Costo: 400 puntos</span></div><button class="btn-accion" style="background: #28a745; color: white; margin:0;" onclick="comprarCupon(400, 40)">Canjear</button></div>
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #ddd; padding: 10px 0;"><div style="text-align: left;"><b style="font-size: 1.1em;">Cupón 50%</b><br><span style="color: gray;">Costo: 500 puntos</span></div><button class="btn-accion" style="background: #28a745; color: white; margin:0;" onclick="comprarCupon(500, 50)">Canjear</button></div>
+            <div style="margin-top: 15px; text-align: left;"><h4 style="margin-bottom: 5px;">Mis Cupones Disponibles:</h4><div id="lista-mis-cupones-activos" style="font-size: 0.9em; color: #555;">No tienes cupones.</div></div>
+            <button class="modal-btn-cancelar" style="margin-top: 15px;" onclick="cerrarModalCupones()">Cerrar Tienda</button>
         </div>
     </div>
 
     <script>
         let miCarrito = JSON.parse(localStorage.getItem('carrito_guardado')) || [];
-        let descuentoCupon = 0;
-        let totalGlobalAPagar = 0;
+        let descuentoCupon = 0; let codigoCuponAplicado = null; let totalGlobalAPagar = 0;
         let outfitActual = { superior: null, inferior: null, calzado: null };
-        
-        // Variables globales para el filtro de categorías
-        let catalogoCompleto = [];
-        let descuentosGlobales = [];
+        let catalogoCompleto = []; let descuentosGlobales = []; let misCuponesValidos = [];
 
         document.addEventListener("DOMContentLoaded", () => {
-            const idUsuario = localStorage.getItem('id_usuario');
-            const nombreUsuario = localStorage.getItem('nombre_usuario');
+            const idUsuario = localStorage.getItem('id_usuario'); const nombreUsuario = localStorage.getItem('nombre_usuario');
             if (idUsuario && nombreUsuario) mostrarCatalogo("Hola, " + nombreUsuario + "!");
             actualizarContadorCarrito();
             const inputContrasena = document.getElementById("logPass");
             if(inputContrasena) { inputContrasena.addEventListener("keypress", function(event) { if (event.key === "Enter") { event.preventDefault(); hacerLogin(); } }); }
         });
 
-        function cambiarFormulario(tipo) {
-            document.getElementById('tarjeta-login').style.display = tipo === 'registro' ? 'none' : 'block';
-            document.getElementById('tarjeta-registro').style.display = tipo === 'registro' ? 'block' : 'none';
-        }
-
-        function hacerRegistro() {
-            const nombre = document.getElementById('regNombre').value; const apellido = document.getElementById('regApellido').value;
-            const correo = document.getElementById('regCorreo').value; const contrasenia = document.getElementById('regPass').value;
-            if(!nombre || !correo || !contrasenia) { alert("Completa los campos obligatorios"); return; }
-            fetch('http://localhost:8080/api/registro', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ nombre: nombre, apellido: apellido, correo: correo, contrasenia: contrasenia })
-            }).then(r => r.text().then(t => { alert(t); if (r.ok) cambiarFormulario('login'); })).catch(e => alert("Error de conexion."));
-        }
-        
-        function hacerLogin() {
-            const correo = document.getElementById('logCorreo').value; const contrasenia = document.getElementById('logPass').value;
-            fetch('http://localhost:8080/api/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ correo: correo, contrasenia: contrasenia })
-            }).then(respuesta => {
-                if (respuesta.ok) { return respuesta.json().then(usuario => {
-                        const idReal = usuario.idUsuario || usuario.id_usuario || usuario.id;
-                        const nombreReal = usuario.nombre ? usuario.nombre : "Usuario";
-                        const esAdmin = (usuario.id_rol == 1 || usuario.idRol == 1 || correo.includes('@stylematch.com'));
-                        localStorage.setItem('id_usuario', idReal); localStorage.setItem('nombre_usuario', nombreReal); localStorage.setItem('es_admin', esAdmin ? 'SI' : 'NO');
-                        mostrarCatalogo("Hola, " + nombreReal + "!"); });
-                } else { alert("Error: Correo o contrasena incorrectos"); }
-            }).catch(e => alert("Error conectando con el servidor."));
-        }
-
+        function cambiarFormulario(tipo) { document.getElementById('tarjeta-login').style.display = tipo === 'registro' ? 'none' : 'block'; document.getElementById('tarjeta-registro').style.display = tipo === 'registro' ? 'block' : 'none'; }
+        function hacerRegistro() { const nombre = document.getElementById('regNombre').value; const apellido = document.getElementById('regApellido').value; const correo = document.getElementById('regCorreo').value; const contrasenia = document.getElementById('regPass').value; if(!nombre || !correo || !contrasenia) { alert("Completa los campos obligatorios"); return; } fetch('http://localhost:8080/api/registro', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ nombre: nombre, apellido: apellido, correo: correo, contrasenia: contrasenia }) }).then(r => r.text().then(t => { alert(t); if (r.ok) cambiarFormulario('login'); })).catch(e => alert("Error de conexion.")); }
+        function hacerLogin() { const correo = document.getElementById('logCorreo').value; const contrasenia = document.getElementById('logPass').value; fetch('http://localhost:8080/api/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ correo: correo, contrasenia: contrasenia }) }).then(respuesta => { if (respuesta.ok) { return respuesta.json().then(usuario => { const idReal = usuario.idUsuario || usuario.id_usuario || usuario.id; const nombreReal = usuario.nombre ? usuario.nombre : "Usuario"; const esAdmin = (usuario.id_rol == 1 || usuario.idRol == 1 || correo.includes('@stylematch.com')); localStorage.setItem('id_usuario', idReal); localStorage.setItem('nombre_usuario', nombreReal); localStorage.setItem('es_admin', esAdmin ? 'SI' : 'NO'); mostrarCatalogo("Hola, " + nombreReal + "!"); }); } else { alert("Error: Correo o contrasena incorrectos"); } }).catch(e => alert("Error conectando con el servidor.")); }
         function cerrarSesion() { localStorage.clear(); location.reload(); }
 
         function mostrarCatalogo(mensajeBienvenida) {
-            document.getElementById('pantalla-auth').style.display = 'none'; document.getElementById('pantalla-probador').style.display = 'none';
-            document.getElementById('pantalla-catalogo').style.display = 'block'; document.getElementById('mensaje-bienvenida').innerText = mensajeBienvenida;
-            document.getElementById('btnFavs').style.display = 'inline-block'; document.getElementById('btnVolver').style.display = 'none';
-            document.getElementById('barra-categorias').style.display = 'flex';
-
+            document.getElementById('pantalla-auth').style.display = 'none'; document.getElementById('pantalla-probador').style.display = 'none'; document.getElementById('pantalla-catalogo').style.display = 'block'; document.getElementById('mensaje-bienvenida').innerText = mensajeBienvenida; document.getElementById('btnFavs').style.display = 'inline-block'; document.getElementById('btnCompras').style.display = 'inline-block'; document.getElementById('btnTiendaPuntos').style.display = 'inline-block'; document.getElementById('btnVolver').style.display = 'none'; document.getElementById('barra-categorias').style.display = 'flex';
             const esAdmin = localStorage.getItem('es_admin');
             document.getElementById('panel-admin').style.display = (esAdmin === 'SI') ? 'flex' : 'none';
             document.getElementById('contenido-principal').innerHTML = '<h2>Cargando catalogo...</h2>';
 
-            fetch('http://localhost:8080/api/productos').then(r => r.json()).then(productos => {
+            fetch('http://localhost:8080/api/productos/catalogo-completo').then(r => r.json()).then(productos => {
                 catalogoCompleto = productos;
-                fetch('http://localhost:8080/api/descuentos').then(res => res.json()).then(descuentos => {
-                    descuentosGlobales = descuentos;
-                    filtrarCatalogo('todo');
-                }).catch(err => { descuentosGlobales = []; filtrarCatalogo('todo'); });
+                fetch('http://localhost:8080/api/descuentos').then(res => res.json()).then(descuentos => { descuentosGlobales = descuentos; filtrarCatalogo('todo'); }).catch(err => { descuentosGlobales = []; filtrarCatalogo('todo'); });
             }).catch(e => document.getElementById('contenido-principal').innerHTML = '<h2>Error al cargar los productos.</h2>');
         }
         
-        function filtrarCatalogo(idFiltro) {
-            document.querySelectorAll('.btn-categoria').forEach(btn => btn.classList.remove('activo'));
-            document.getElementById('btn-filtro-' + idFiltro).classList.add('activo');
-            
-            let productosFiltrados = catalogoCompleto;
-            if (idFiltro !== 'todo') {
-                productosFiltrados = catalogoCompleto.filter(prod => {
-                    const idCat = prod.id_categoria || prod.idCategoria || 1;
-                    return idCat === idFiltro;
-                });
-            }
-            renderizarTarjetas(productosFiltrados, descuentosGlobales);
-        }
+        function filtrarCatalogo(idFiltro) { document.querySelectorAll('.btn-categoria').forEach(btn => btn.classList.remove('activo')); document.getElementById('btn-filtro-' + idFiltro).classList.add('activo'); let productosFiltrados = catalogoCompleto; if (idFiltro !== 'todo') { productosFiltrados = catalogoCompleto.filter(prod => { const idCat = prod.id_categoria || prod.idCategoria || 1; return idCat === idFiltro; }); } renderizarTarjetas(productosFiltrados, descuentosGlobales); }
 
         function abrirModal(idModal) { document.getElementById(idModal).style.display = 'flex'; }
         function cerrarModal(idModal) { document.getElementById(idModal).style.display = 'none'; }
+        function cerrarModalCupones() { cerrarModal('modal-cupones'); if(document.getElementById('mensaje-bienvenida').innerText === "Mi Carrito de Compras") { verCarrito(); } }
 
-        function guardarNuevoProducto() {
-            const nombre = document.getElementById('nuevoNombre').value; const marca = document.getElementById('nuevaMarca').value;
-            const precioBase = document.getElementById('nuevoPrecio').value; const desc = document.getElementById('nuevaDesc').value;
-            const idCat = document.getElementById('nuevoIdCategoria').value; const idProv = document.getElementById('nuevoIdProveedor').value;
-            if(!nombre || !marca || !precioBase) { alert("Completa al menos nombre, marca y precio base."); return; }
-            const datos = { nombre: nombre, marca: marca, precioBase: parseFloat(precioBase), precio_base: parseFloat(precioBase), descripcionGeneral: desc, descripcion_general: desc, idCategoria: parseInt(idCat) || 1, id_categoria: parseInt(idCat) || 1, idProveedor: parseInt(idProv) || 1, id_proveedor: parseInt(idProv) || 1 };
-            fetch('http://localhost:8080/api/productos/agregar', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(datos)
-            }).then(r => r.text().then(t => { alert(t); cerrarModal('modal-agregar'); volverAlCatalogo(); })).catch(e => alert("Error de conexion."));
-        }
-        function guardarNuevoPrecio() {
-            const idProd = document.getElementById('precioIdProducto').value; const nuevoPrecio = document.getElementById('precioNuevoMonto').value;
-            if(!idProd || !nuevoPrecio) { alert("Llena ambos campos por favor."); return; }
-            fetch('http://localhost:8080/api/precios/actualizar', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ idProducto: parseInt(idProd), precioVenta: parseFloat(nuevoPrecio) })
-            }).then(r => r.text().then(t => { alert(t); cerrarModal('modal-precio'); volverAlCatalogo(); })).catch(e => alert("Error de conexion."));
-        }
-        function guardarNuevoDescuento() {
-            const idProd = document.getElementById('descIdProducto').value; const porc = document.getElementById('descPorcentaje').value;
-            if(!idProd || !porc) { alert("Llena ambos campos por favor."); return; }
-            fetch('http://localhost:8080/api/descuentos/agregar', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ idProducto: parseInt(idProd), id_producto: parseInt(idProd), porcentaje: parseInt(porc) })
-            }).then(r => r.text().then(t => { alert(t); cerrarModal('modal-descuento'); volverAlCatalogo(); })).catch(e => alert("Error de conexion."));
-        }
-        function borrarProducto() {
-            const idProd = document.getElementById('eliminarIdProducto').value; if(!idProd) { alert("Ingresa el ID del producto."); return; }
-            fetch('http://localhost:8080/api/productos/eliminar/' + idProd, { method: 'DELETE' }).then(r => r.text().then(t => { alert(t); cerrarModal('modal-eliminar'); volverAlCatalogo(); })).catch(e => alert("Error de conexion."));
+        // ADMINISTRADOR Y BORRADO LOGICO
+        function guardarNuevoProducto() { const nombre = document.getElementById('nuevoNombre').value; const marca = document.getElementById('nuevaMarca').value; const precioBase = document.getElementById('nuevoPrecio').value; const desc = document.getElementById('nuevaDesc').value; const idCat = document.getElementById('nuevoIdCategoria').value; const idProv = document.getElementById('nuevoIdProveedor').value; if(!nombre || !marca || !precioBase) { alert("Completa al menos nombre, marca y precio base."); return; } const datos = { nombre: nombre, marca: marca, precioBase: parseFloat(precioBase), precio_base: parseFloat(precioBase), descripcionGeneral: desc, descripcion_general: desc, idCategoria: parseInt(idCat) || 1, id_categoria: parseInt(idCat) || 1, idProveedor: parseInt(idProv) || 1, id_proveedor: parseInt(idProv) || 1 }; fetch('http://localhost:8080/api/productos/agregar', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(datos) }).then(r => r.text().then(t => { alert(t); cerrarModal('modal-agregar'); volverAlCatalogo(); })).catch(e => alert("Error de conexion.")); }
+        function guardarNuevoPrecio() { const idProd = document.getElementById('precioIdProducto').value; const nuevoPrecio = document.getElementById('precioNuevoMonto').value; if(!idProd || !nuevoPrecio) { alert("Llena ambos campos por favor."); return; } fetch('http://localhost:8080/api/precios/actualizar', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ idProducto: parseInt(idProd), precioVenta: parseFloat(nuevoPrecio) }) }).then(r => r.text().then(t => { alert(t); cerrarModal('modal-precio'); volverAlCatalogo(); })).catch(e => alert("Error de conexion.")); }
+        function guardarNuevoDescuento() { const idProd = document.getElementById('descIdProducto').value; const porc = document.getElementById('descPorcentaje').value; if(!idProd || !porc) { alert("Llena ambos campos por favor."); return; } fetch('http://localhost:8080/api/descuentos/agregar', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ idProducto: parseInt(idProd), id_producto: parseInt(idProd), porcentaje: parseInt(porc) }) }).then(r => r.text().then(t => { alert(t); cerrarModal('modal-descuento'); volverAlCatalogo(); })).catch(e => alert("Error de conexion.")); }
+        function guardarNuevoStock() { const idProd = document.getElementById('stockIdProducto').value; const nStock = document.getElementById('stockNuevo').value; if(!idProd || !nStock) { alert("Llena ambos campos por favor."); return; } fetch('http://localhost:8080/api/productos/actualizar-stock', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ idProducto: parseInt(idProd), stock: parseInt(nStock) }) }).then(r => r.text().then(t => { alert(t); cerrarModal('modal-stock'); volverAlCatalogo(); })).catch(e => alert("Error de conexion.")); }
+        function verBitacora() { fetch('http://localhost:8080/api/productos/bitacora').then(r => r.json()).then(data => { let html = `<html><head><title>Auditoría - StyleMatch</title><style>body{font-family:sans-serif;padding:30px;}.cabecera-bitacora{display:flex;justify-content:space-between;border-bottom:2px solid #ddd;padding-bottom:10px;margin-bottom:20px;}button{background:#dc3545;color:white;border:none;padding:10px 20px;border-radius:6px;cursor:pointer;}table{width:100%;border-collapse:collapse;}th,td{padding:12px;border-bottom:1px solid #ddd;text-align:left;}th{background:#1f1c2c;color:white;}</style></head><body><div class="cabecera-bitacora"><h2>Registros de Seguridad (Bitácora)</h2><button onclick="window.close()">Cerrar Pestaña</button></div><table><tr><th>Fecha y Hora</th><th>Usuario Responsable</th><th>Acción Realizada</th></tr>`; data.forEach(b => { html += `<tr><td>${new Date(b.fecha_hora).toLocaleString('es-ES')}</td><td><strong>${b.nombre_usuario}</strong></td><td>${b.accion_realizada}</td></tr>`; }); html += `</table></body></html>`; const nueva = window.open("", "_blank"); nueva.document.write(html); nueva.document.close(); }); }
+
+        function borrarProducto() { 
+            const idProd = document.getElementById('eliminarIdProducto').value; 
+            if(!idProd) { alert("Ingresa el ID del producto."); return; } 
+            fetch('http://localhost:8080/api/productos/eliminar/' + idProd, { method: 'DELETE' }).then(r => r.text().then(t => { alert(t); cerrarModal('modal-eliminar'); volverAlCatalogo(); })).catch(e => alert("Error de conexion.")); 
         }
 
+        function abrirElementosOcultos() {
+            fetch('http://localhost:8080/api/productos/ocultos').then(r => r.json()).then(data => {
+                let html = '';
+                if (data.length === 0) { html = '<p style="color:gray;">No hay elementos ocultos.</p>'; }
+                else {
+                    data.forEach(p => {
+                        html += `<div style="background: #f9f9f9; padding: 10px; margin-bottom: 5px; border-radius: 6px; display: flex; justify-content: space-between; align-items: center; border: 1px solid #ddd;">
+                            <div><b>${p.nombre}</b><br><span style="font-size:0.8em; color:gray;">ID: ${p.id_producto} | ${p.marca}</span></div>
+                            <button style="background: #28a745; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-weight:bold;" onclick="restaurarProducto(${p.id_producto})">Restaurar</button>
+                        </div>`;
+                    });
+                }
+                document.getElementById('lista-ocultos-contenedor').innerHTML = html;
+                abrirModal('modal-ocultos');
+            });
+        }
+
+        function restaurarProducto(id) {
+            fetch('http://localhost:8080/api/productos/restaurar/' + id, {method: 'POST'}).then(r => r.text()).then(t => {
+                alert(t); abrirElementosOcultos(); volverAlCatalogo();
+            });
+        }
+
+        // --- SISTEMA DE CUPONES ---
+        function abrirTiendaCupones() { const idUser = localStorage.getItem('id_usuario'); if(!idUser) return; fetch('http://localhost:8080/api/pedidos/puntos/' + idUser).then(r=>r.json()).then(puntos => { document.getElementById('puntos-disponibles-tienda').innerText = puntos.puntos_actuales || 0; fetch('http://localhost:8080/api/pedidos/mis-cupones/' + idUser).then(r=>r.json()).then(cupones => { let html = ''; if(cupones.length === 0) { html = 'No tienes cupones activos.'; } else { cupones.forEach(c => { html += `<div style="background: #eee; padding: 5px 10px; margin-bottom: 5px; border-radius: 4px; display: flex; justify-content: space-between;"><b>${c.codigo_cupon}</b> <span style="color: #28a745; font-weight:bold;">-${c.porcentaje_descuento}%</span></div>`; }); } document.getElementById('lista-mis-cupones-activos').innerHTML = html; abrirModal('modal-cupones'); }); }); }
+        function comprarCupon(costo, porcentaje) { const idUser = localStorage.getItem('id_usuario'); fetch('http://localhost:8080/api/pedidos/comprar-cupon', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ idUsuario: parseInt(idUser), costoPuntos: costo, porcentaje: porcentaje }) }).then(r => { if(r.ok) { r.text().then(codigo => { alert("¡Cupón canjeado con éxito!\nTu código es: " + codigo); abrirTiendaCupones(); }); } else { r.text().then(err => alert(err)); } }); }
+        function aplicarCupon() { const codigoInput = document.getElementById('codigoCupon').value.trim().toUpperCase(); if(!codigoInput) { alert("Ingresa un código de cupón."); return; } const idUsuarioActual = localStorage.getItem('id_usuario'); fetch('http://localhost:8080/api/pedidos/mis-cupones/' + idUsuarioActual).then(r=>r.json()).then(cupones => { misCuponesValidos = cupones; const cuponEncontrado = cupones.find(c => c.codigo_cupon === codigoInput); if (cuponEncontrado) { descuentoCupon = cuponEncontrado.porcentaje_descuento; codigoCuponAplicado = cuponEncontrado.codigo_cupon; alert("Cupón del " + descuentoCupon + "% aplicado correctamente."); } else { descuentoCupon = 0; codigoCuponAplicado = null; alert("Código inválido o ya fue usado."); } pintarCarritoHTML(); }); }
+
+        // --- CARRITO ---
         function volverAlCatalogo() { mostrarCatalogo("Hola, " + localStorage.getItem('nombre_usuario') + "!"); }
         function agregarAlCarrito(idProducto, nombre, precio) { miCarrito.push({ id: idProducto, nombre: nombre, precio: parseFloat(precio) }); localStorage.setItem('carrito_guardado', JSON.stringify(miCarrito)); actualizarContadorCarrito(); alert("Anadido al carrito: " + nombre); }
         function actualizarContadorCarrito() { document.getElementById('contador-carrito').innerText = miCarrito.length; }
 
         function verCarrito() {
-            document.getElementById('mensaje-bienvenida').innerText = "Mi Carrito de Compras"; document.getElementById('btnVolver').style.display = 'inline-block';
-            document.getElementById('btnFavs').style.display = 'inline-block'; document.getElementById('panel-admin').style.display = 'none'; 
-            document.getElementById('barra-categorias').style.display = 'none';
-            document.getElementById('pantalla-probador').style.display = 'none'; document.getElementById('pantalla-catalogo').style.display = 'block';
+            document.getElementById('mensaje-bienvenida').innerText = "Mi Carrito de Compras"; document.getElementById('btnVolver').style.display = 'inline-block'; document.getElementById('btnTiendaPuntos').style.display = 'none'; document.getElementById('btnFavs').style.display = 'none'; document.getElementById('btnCompras').style.display = 'none'; document.getElementById('panel-admin').style.display = 'none'; document.getElementById('barra-categorias').style.display = 'none'; document.getElementById('pantalla-probador').style.display = 'none'; document.getElementById('pantalla-catalogo').style.display = 'block';
+            const idUsuarioActual = localStorage.getItem('id_usuario');
+            fetch('http://localhost:8080/api/pedidos/mis-cupones/' + idUsuarioActual).then(r=>r.json()).then(cupones => { misCuponesValidos = cupones; pintarCarritoHTML(); });
+        }
+
+        function pintarCarritoHTML() {
             const contenedor = document.getElementById('contenido-principal');
             if (miCarrito.length === 0) { contenedor.innerHTML = '<h3>Tu carrito esta vacio</h3><button onclick="volverAlCatalogo()" class="btn-comprar">Ver productos</button>'; return; }
-
             let htmlCarrito = `<div class="carrito-container">`; let subtotal = 0;
             miCarrito.forEach((item, index) => { subtotal += item.precio; htmlCarrito += `<div class="carrito-item"><span style="font-size: 1.2em;"><b>${item.nombre}</b></span><div><span style="color: #28a745; font-weight: bold; margin-right: 15px;">$${item.precio.toFixed(2)}</span><button class="btn-eliminar" onclick="eliminarDelCarrito(${index})">Quitar</button></div></div>`; });
             totalGlobalAPagar = subtotal - (subtotal * descuentoCupon / 100);
-            htmlCarrito += `<div class="resumen-caja"><div class="cupon-box"><input type="text" id="codigoCupon" placeholder="Tienes un cupon?"><button class="btn-accion" style="background:#1f1c2c; color:white;" onclick="aplicarCupon()">Aplicar</button></div><p style="font-size: 1.2em; color: gray;">Subtotal: $${subtotal.toFixed(2)}</p>${descuentoCupon > 0 ? `<p style="font-size: 1.2em; color: #dc3545;">Descuento (${descuentoCupon}%): -$${(subtotal * descuentoCupon / 100).toFixed(2)}</p>` : ''}<h2 style="color: #222; font-size: 2em; margin: 10px 0;">Total a Pagar: $${totalGlobalAPagar.toFixed(2)}</h2><button class="btn-pagar" onclick="iniciarPago()">Proceder al Pago Seguro</button></div></div>`;
+            let misCodigosDisponibles = misCuponesValidos.map(c => `<b>${c.codigo_cupon}</b> (-${c.porcentaje_descuento}%)`).join(' | '); if(misCuponesValidos.length === 0) misCodigosDisponibles = "No tienes cupones. ¡Visita la tienda de puntos!";
+            htmlCarrito += `<div class="resumen-caja"><p style="text-align: left; font-size: 0.9em; color: gray;">Tus cupones válidos: ${misCodigosDisponibles}</p><div class="cupon-box"><input type="text" id="codigoCupon" placeholder="Pega tu código aquí" value="${codigoCuponAplicado || ''}"><button class="btn-accion" style="background:#1f1c2c; color:white;" onclick="aplicarCupon()">Aplicar Código</button></div><p style="font-size: 1.2em; color: gray;">Subtotal: $${subtotal.toFixed(2)}</p>${descuentoCupon > 0 ? `<p style="font-size: 1.2em; color: #dc3545;">Descuento (${descuentoCupon}%): -$${(subtotal * descuentoCupon / 100).toFixed(2)}</p>` : ''}<h2 style="color: #222; font-size: 2em; margin: 10px 0;">Total a Pagar: $${totalGlobalAPagar.toFixed(2)}</h2><button class="btn-pagar" onclick="iniciarPago()">Proceder al Pago Seguro</button></div></div>`;
             contenedor.innerHTML = htmlCarrito;
         }
 
         function eliminarDelCarrito(index) { miCarrito.splice(index, 1); localStorage.setItem('carrito_guardado', JSON.stringify(miCarrito)); actualizarContadorCarrito(); verCarrito(); }
-        function aplicarCupon() { const codigo = document.getElementById('codigoCupon').value.toUpperCase(); if (codigo === "STYLE20") { descuentoCupon = 20; alert("Cupon del 20% aplicado."); } else if (codigo === "VERANO10") { descuentoCupon = 10; alert("Cupon del 10% aplicado."); } else { descuentoCupon = 0; alert("Cupon invalido o expirado."); } verCarrito(); }
         function iniciarPago() { if(miCarrito.length === 0) return; document.getElementById('monto-cobrar').innerText = "$" + totalGlobalAPagar.toFixed(2); abrirModal('modal-pago'); }
-        function confirmarPagoFinal() {
-            const tarjeta = document.getElementById('pagoTarjeta').value; const direccion = document.getElementById('pagoDireccion').value;
-            if(tarjeta.length < 10 || direccion.length < 5) { alert("Por favor ingresa un numero valido y direccion."); return; }
-            alert("Pago procesado con exito.\nTu pedido ha sido registrado.\nGracias por comprar en StyleMatch!");
-            miCarrito = []; descuentoCupon = 0; localStorage.removeItem('carrito_guardado'); actualizarContadorCarrito(); cerrarModal('modal-pago'); volverAlCatalogo();
-        }
+        function confirmarPagoFinal() { const tarjeta = document.getElementById('pagoTarjeta').value; const direccion = document.getElementById('pagoDireccion').value; const idUsuarioActual = localStorage.getItem('id_usuario'); if(tarjeta.length < 10 || direccion.length < 5) { alert("Por favor ingresa un numero de tarjeta valido y direccion."); return; } if(!idUsuarioActual) { alert("Error: Debes iniciar sesión para procesar un pedido."); return; } const detallesPedido = miCarrito.map(item => ({ idProducto: item.id, cantidad: 1, subtotal: item.precio })); const payload = { idUsuario: parseInt(idUsuarioActual), totalPagado: totalGlobalAPagar, detalles: detallesPedido, codigoCupon: codigoCuponAplicado }; fetch('http://localhost:8080/api/pedidos/procesar', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) }).then(respuesta => { if (respuesta.ok) { alert("¡Pago procesado con éxito!\nHas sumado nuevos puntos de lealtad a tu cuenta."); miCarrito = []; descuentoCupon = 0; codigoCuponAplicado = null; localStorage.removeItem('carrito_guardado'); actualizarContadorCarrito(); cerrarModal('modal-pago'); volverAlCatalogo(); } else { alert("Operación rechazada. Es posible que uno de los artículos ya no tenga stock en el inventario."); cerrarModal('modal-pago'); volverAlCatalogo(); } }).catch(error => { alert("Error de conexión con el servidor bancario."); }); }
 
+        function valorarProducto(idProducto) { const idUsuario = localStorage.getItem('id_usuario'); if(!idUsuario) { alert("Debes iniciar sesión para calificar."); return; } const estrellas = prompt("Del 1 al 5, ¿cuántas estrellas le das a este producto?"); if(!estrellas || estrellas < 1 || estrellas > 5) { alert("Valor inválido"); return; } const comentario = prompt("Escribe un breve comentario:"); fetch('http://localhost:8080/api/productos/valorar', { method: 'POST', headers:{'Content-Type': 'application/json'}, body: JSON.stringify({idUsuario: parseInt(idUsuario), idProducto: parseInt(idProducto), estrellas: parseInt(estrellas), comentario: comentario || 'Excelente'}) }).then(r => r.text().then(t => alert(t))); }
         function generarUrlImagen(nombre) { return `img/${nombre}.png`; }
+        function renderizarTarjetas(productos, descuentos) { const contenedor = document.getElementById('contenido-principal'); contenedor.innerHTML = ''; const esAdmin = localStorage.getItem('es_admin') === 'SI'; if (productos.length === 0) { contenedor.innerHTML = '<h3>No hay productos en esta categoria</h3>'; return; } productos.forEach(prod => { const idProd = prod.id_producto || prod.idProducto || prod.id || 0; const precioReal = prod.precio_venta || prod.precioVenta || prod.precio || prod.precio_base || 0; const descEncontrado = descuentos.find(d => (d.id_producto || d.idProducto) === idProd); const porcentaje = descEncontrado ? (descEncontrado.porcentaje || descEncontrado.valor || descEncontrado.descuento || 0) : 0; const stockDisponible = prod.stock_actual !== undefined ? prod.stock_actual : 0; let precioFinal = precioReal; let htmlPrecio = ''; if (porcentaje > 0 && precioReal > 0) { precioFinal = precioReal - (precioReal * porcentaje / 100); htmlPrecio = `<p class="precio" style="margin: 10px 0;"><span style="text-decoration: line-through; color: #999; font-size: 0.7em;">$${parseFloat(precioReal).toFixed(2)}</span><span style="color: #e74c3c; font-weight: bold; margin-left: 8px;">$${parseFloat(precioFinal).toFixed(2)}</span><span style="background-color: #e74c3c; color: white; font-size: 0.5em; padding: 2px 5px; border-radius: 3px; vertical-align: top;">-${porcentaje}%</span></p>`; } else { htmlPrecio = `<p class="precio" style="color: #28a745; margin: 10px 0;">$${parseFloat(precioReal).toFixed(2)}</p>`; } const htmlIdAdmin = esAdmin ? `<span class="id-badge">ID: ${idProd} | Stock: ${stockDisponible}</span>` : ''; const nombreLimpio = prod.nombre.replace(/'/g, "\\'"); const urlImg = generarUrlImagen(prod.nombre); const botonAccion = stockDisponible > 0 ? `<button class="btn-comprar" style="flex-grow: 1;" onclick="agregarAlCarrito(${idProd}, '${nombreLimpio}', ${precioFinal})">Anadir</button>` : `<button class="btn-agotado" style="flex-grow: 1;" disabled>Agotado</button>`; contenedor.innerHTML += `<div class="producto">${htmlIdAdmin}<div class="producto-img-box"><img src="${urlImg}" onerror="this.src='https://dummyimage.com/200x200/ffffff/cccccc&text=Sin+Foto'" alt="${prod.nombre}"></div><h3 style="margin-top:0; font-size: 1.1em;">${prod.nombre}</h3><p style="color: gray; font-size:0.9em; margin: 5px 0;">Marca: ${prod.marca}</p>${htmlPrecio}<div style="display: flex; gap: 5px; margin-top: 10px;">${botonAccion}<button class="btn-corazon" onclick="agregarADeseos(${idProd})" title="Añadir a Deseos">Fav</button><button class="btn-estrella" onclick="valorarProducto(${idProd})" title="Calificar Producto">★</button></div></div>`; }); }
 
-        function renderizarTarjetas(productos, descuentos) {
-            const contenedor = document.getElementById('contenido-principal'); contenedor.innerHTML = '';
-            const esAdmin = localStorage.getItem('es_admin') === 'SI';
-            
-            if (productos.length === 0) { contenedor.innerHTML = '<h3>No hay productos en esta categoria</h3>'; return; }
-            
-            productos.forEach(prod => {
-                const idProd = prod.id_producto || prod.idProducto || prod.id || 0; const idCat = prod.id_categoria || prod.idCategoria || 1;
-                const precioReal = prod.precio_venta || prod.precioVenta || prod.precio || prod.precio_base || 0; 
-                const descEncontrado = descuentos.find(d => (d.id_producto || d.idProducto) === idProd);
-                const porcentaje = descEncontrado ? (descEncontrado.porcentaje || descEncontrado.valor || descEncontrado.descuento || 0) : 0;
-                let precioFinal = precioReal; let htmlPrecio = '';
-                if (porcentaje > 0 && precioReal > 0) {
-                    precioFinal = precioReal - (precioReal * porcentaje / 100);
-                    htmlPrecio = `<p class="precio" style="margin: 10px 0;"><span style="text-decoration: line-through; color: #999; font-size: 0.7em;">$${parseFloat(precioReal).toFixed(2)}</span><span style="color: #e74c3c; font-weight: bold; margin-left: 8px;">$${parseFloat(precioFinal).toFixed(2)}</span><span style="background-color: #e74c3c; color: white; font-size: 0.5em; padding: 2px 5px; border-radius: 3px; vertical-align: top;">-${porcentaje}%</span></p>`;
-                } else { htmlPrecio = `<p class="precio" style="color: #28a745; margin: 10px 0;">$${parseFloat(precioReal).toFixed(2)}</p>`; }
-                
-                const htmlIdAdmin = esAdmin ? `<span class="id-badge">ID: ${idProd}</span>` : '';
-                const nombreLimpio = prod.nombre.replace(/'/g, "\\'"); 
-                const urlImg = generarUrlImagen(prod.nombre);
-                
-                contenedor.innerHTML += `
-                    <div class="producto">
-                        ${htmlIdAdmin}
-                        <div class="producto-img-box">
-                            <img src="${urlImg}" onerror="this.src='https://dummyimage.com/200x200/ffffff/cccccc&text=Sin+Foto'" alt="${prod.nombre}">
-                        </div>
-                        <h3 style="margin-top:0; font-size: 1.1em;">${prod.nombre}</h3>
-                        <p style="color: gray; font-size:0.9em; margin: 5px 0;">Marca: ${prod.marca}</p>
-                        ${htmlPrecio}
-                        <div style="display: flex; gap: 5px; margin-top: 10px;">
-                            <button class="btn-comprar" style="flex-grow: 1;" onclick="agregarAlCarrito(${idProd}, '${nombreLimpio}', ${precioFinal})">Anadir</button>
-                            <button class="btn-corazon" onclick="agregarADeseos(${idProd})">Fav</button>
-                        </div>
-                    </div>`;
-            });
-        }
-
-        // --- PROBADOR VIRTUAL ---
-        function cambiarGeneroManiqui(genero) {
-            document.getElementById('btn-varon').classList.remove('activo'); document.getElementById('btn-mujer').classList.remove('activo');
-            document.getElementById('btn-' + genero).classList.add('activo');
-            const fondo = document.getElementById('fondo-maniqui');
-            fondo.classList.remove('silueta-varon', 'silueta-mujer'); fondo.classList.add('silueta-' + genero);
-            const contenedor = document.getElementById('contenedor-silueta');
-            contenedor.classList.remove('varon', 'mujer'); contenedor.classList.add(genero);
-        }
-
-        function abrirProbador() {
-            document.getElementById('pantalla-catalogo').style.display = 'none'; document.getElementById('pantalla-probador').style.display = 'block';
-            document.getElementById('inventario-probador').innerHTML = '<h2>Cargando inventario...</h2>';
-            fetch('http://localhost:8080/api/productos').then(r => r.json()).then(productos => {
-                fetch('http://localhost:8080/api/descuentos').then(res => res.json()).then(descuentos => dibujarInventarioProbador(productos, descuentos)).catch(err => dibujarInventarioProbador(productos, []));
-            }).catch(e => document.getElementById('inventario-probador').innerHTML = '<h2>Error al cargar el inventario.</h2>');
-        }
-
-        function dibujarInventarioProbador(productos, descuentos) {
-            let htmlSuperior = '<h4 class="categoria-titulo">Ropa Superior</h4><div class="lista-mini-productos">';
-            let htmlInferior = '<h4 class="categoria-titulo">Ropa Inferior</h4><div class="lista-mini-productos">';
-            let htmlCalzado = '<h4 class="categoria-titulo">Calzado</h4><div class="lista-mini-productos">';
-            productos.forEach(prod => {
-                const idProd = prod.id_producto || prod.idProducto || prod.id || 0; const idCat = prod.id_categoria || prod.idCategoria || 1;
-                const precioReal = prod.precio_venta || prod.precioVenta || prod.precio || prod.precio_base || 0; 
-                const descEncontrado = descuentos.find(d => (d.id_producto || d.idProducto) === idProd);
-                const porcentaje = descEncontrado ? (descEncontrado.porcentaje || descEncontrado.valor || descEncontrado.descuento || 0) : 0;
-                let precioFinal = precioReal; if (porcentaje > 0 && precioReal > 0) precioFinal = precioReal - (precioReal * porcentaje / 100);
-                const nombreLimpio = prod.nombre.replace(/'/g, "\\'"); 
-                const urlImg = generarUrlImagen(prod.nombre);
-                
-                const tarjetaHtml = `
-                    <div class="tarjeta-mini" onclick="equiparEnManiqui(${idProd}, '${nombreLimpio}', ${precioFinal}, ${idCat}, '${urlImg}')">
-                        <div class="mini-img-box">
-                            <img src="${urlImg}" onerror="this.src='https://dummyimage.com/200x200/ffffff/cccccc&text=Sin+Foto'">
-                        </div>
-                        <p style="font-weight: bold; margin: 0 0 5px 0; font-size: 0.8em; line-height: 1.1;">${prod.nombre}</p>
-                        <p style="color: #28a745; margin: 0; font-size: 0.9em; font-weight: bold;">$${parseFloat(precioFinal).toFixed(2)}</p>
-                    </div>`;
-                    
-                if(idCat === 2) htmlSuperior += tarjetaHtml;
-                else if(idCat === 3) htmlInferior += tarjetaHtml;
-                else htmlCalzado += tarjetaHtml; 
-            });
-            document.getElementById('inventario-probador').innerHTML = htmlSuperior + '</div>' + htmlInferior + '</div>' + htmlCalzado + '</div>';
-        }
-
-        function equiparEnManiqui(idProducto, nombre, precio, categoria, urlImg) {
-            const prenda = { id: idProducto, nombre: nombre, precio: parseFloat(precio), img: urlImg };
-            if (categoria === 2) outfitActual.superior = prenda;
-            else if (categoria === 3) outfitActual.inferior = prenda;
-            else outfitActual.calzado = prenda;
-            actualizarManiquiVisual();
-        }
-
-        function actualizarManiquiVisual() {
-            const slotSup = document.getElementById('slot-superior'); const slotInf = document.getElementById('slot-inferior'); const slotCal = document.getElementById('slot-calzado');
-            const listaResumen = document.getElementById('lista-resumen-prendas');
-            let total = 0; let htmlResumen = '';
-            
-            if (outfitActual.superior) { 
-                slotSup.innerHTML = `<img src="${outfitActual.superior.img}" onerror="this.src='https://dummyimage.com/200x200/ffffff/cccccc&text=Sin+Foto'">`; 
-                total += outfitActual.superior.precio;
-                htmlResumen += `<div><span>Superior: ${outfitActual.superior.nombre}</span><b>$${outfitActual.superior.precio.toFixed(2)}</b></div>`;
-            } else { slotSup.innerHTML = ''; }
-            
-            if (outfitActual.inferior) { 
-                slotInf.innerHTML = `<img src="${outfitActual.inferior.img}" onerror="this.src='https://dummyimage.com/200x200/ffffff/cccccc&text=Sin+Foto'">`; 
-                total += outfitActual.inferior.precio;
-                htmlResumen += `<div><span>Inferior: ${outfitActual.inferior.nombre}</span><b>$${outfitActual.inferior.precio.toFixed(2)}</b></div>`;
-            } else { slotInf.innerHTML = ''; }
-            
-            if (outfitActual.calzado) { 
-                slotCal.innerHTML = `<img src="${outfitActual.calzado.img}" onerror="this.src='https://dummyimage.com/200x200/ffffff/cccccc&text=Sin+Foto'">`; 
-                total += outfitActual.calzado.precio;
-                htmlResumen += `<div><span>Calzado: ${outfitActual.calzado.nombre}</span><b>$${outfitActual.calzado.precio.toFixed(2)}</b></div>`;
-            } else { slotCal.innerHTML = ''; }
-            
-            document.getElementById('total-outfit').innerText = total.toFixed(2);
-            
-            if(htmlResumen === '') {
-                listaResumen.innerHTML = '<div style="color: #999; justify-content: center; border: none;">Ninguna prenda seleccionada</div>';
-            } else {
-                listaResumen.innerHTML = htmlResumen;
-            }
-        }
-
+        function cambiarGeneroManiqui(genero) { document.getElementById('btn-varon').classList.remove('activo'); document.getElementById('btn-mujer').classList.remove('activo'); document.getElementById('btn-' + genero).classList.add('activo'); const fondo = document.getElementById('fondo-maniqui'); fondo.classList.remove('silueta-varon', 'silueta-mujer'); fondo.classList.add('silueta-' + genero); const contenedor = document.getElementById('contenedor-silueta'); contenedor.classList.remove('varon', 'mujer'); contenedor.classList.add(genero); }
+        function abrirProbador() { document.getElementById('pantalla-catalogo').style.display = 'none'; document.getElementById('pantalla-probador').style.display = 'block'; document.getElementById('inventario-probador').innerHTML = '<h2>Cargando inventario...</h2>'; fetch('http://localhost:8080/api/productos/catalogo-completo').then(r => r.json()).then(productos => { fetch('http://localhost:8080/api/descuentos').then(res => res.json()).then(descuentos => dibujarInventarioProbador(productos, descuentos)).catch(err => dibujarInventarioProbador(productos, [])); }).catch(e => document.getElementById('inventario-probador').innerHTML = '<h2>Error al cargar el inventario.</h2>'); }
+        function dibujarInventarioProbador(productos, descuentos) { let htmlSuperior = '<h4 class="categoria-titulo">Ropa Superior</h4><div class="lista-mini-productos">'; let htmlInferior = '<h4 class="categoria-titulo">Ropa Inferior</h4><div class="lista-mini-productos">'; let htmlCalzado = '<h4 class="categoria-titulo">Calzado</h4><div class="lista-mini-productos">'; productos.forEach(prod => { const idProd = prod.id_producto || prod.idProducto || prod.id || 0; const idCat = prod.id_categoria || prod.idCategoria || 1; const precioReal = prod.precio_venta || prod.precioVenta || prod.precio || prod.precio_base || 0; const stockDisponible = prod.stock_actual !== undefined ? prod.stock_actual : 0; const descEncontrado = descuentos.find(d => (d.id_producto || d.idProducto) === idProd); const porcentaje = descEncontrado ? (descEncontrado.porcentaje || descEncontrado.valor || descEncontrado.descuento || 0) : 0; let precioFinal = precioReal; if (porcentaje > 0 && precioReal > 0) precioFinal = precioReal - (precioReal * porcentaje / 100); const nombreLimpio = prod.nombre.replace(/'/g, "\\'"); const urlImg = generarUrlImagen(prod.nombre); const tarjetaHtml = stockDisponible > 0 ? `<div class="tarjeta-mini" onclick="equiparEnManiqui(${idProd}, '${nombreLimpio}', ${precioFinal}, ${idCat}, '${urlImg}')"><div class="mini-img-box"><img src="${urlImg}" onerror="this.src='https://dummyimage.com/200x200/ffffff/cccccc&text=Sin+Foto'"></div><p style="font-weight: bold; margin: 0 0 5px 0; font-size: 0.8em; line-height: 1.1;">${prod.nombre}</p><p style="color: #28a745; margin: 0; font-size: 0.9em; font-weight: bold;">$${parseFloat(precioFinal).toFixed(2)}</p></div>` : ''; if(idCat === 2) htmlSuperior += tarjetaHtml; else if(idCat === 3) htmlInferior += tarjetaHtml; else htmlCalzado += tarjetaHtml; }); document.getElementById('inventario-probador').innerHTML = htmlSuperior + '</div>' + htmlInferior + '</div>' + htmlCalzado + '</div>'; }
+        function equiparEnManiqui(idProducto, nombre, precio, categoria, urlImg) { const prenda = { id: idProducto, nombre: nombre, precio: parseFloat(precio), img: urlImg }; if (categoria === 2) outfitActual.superior = prenda; else if (categoria === 3) outfitActual.inferior = prenda; else outfitActual.calzado = prenda; actualizarManiquiVisual(); }
+        function actualizarManiquiVisual() { const slotSup = document.getElementById('slot-superior'); const slotInf = document.getElementById('slot-inferior'); const slotCal = document.getElementById('slot-calzado'); const listaResumen = document.getElementById('lista-resumen-prendas'); let total = 0; let htmlResumen = ''; if (outfitActual.superior) { slotSup.innerHTML = `<img src="${outfitActual.superior.img}" onerror="this.src='https://dummyimage.com/200x200/ffffff/cccccc&text=Sin+Foto'">`; total += outfitActual.superior.precio; htmlResumen += `<div><span>Superior: ${outfitActual.superior.nombre}</span><b>$${outfitActual.superior.precio.toFixed(2)}</b></div>`; } else { slotSup.innerHTML = ''; } if (outfitActual.inferior) { slotInf.innerHTML = `<img src="${outfitActual.inferior.img}" onerror="this.src='https://dummyimage.com/200x200/ffffff/cccccc&text=Sin+Foto'">`; total += outfitActual.inferior.precio; htmlResumen += `<div><span>Inferior: ${outfitActual.inferior.nombre}</span><b>$${outfitActual.inferior.precio.toFixed(2)}</b></div>`; } else { slotInf.innerHTML = ''; } if (outfitActual.calzado) { slotCal.innerHTML = `<img src="${outfitActual.calzado.img}" onerror="this.src='https://dummyimage.com/200x200/ffffff/cccccc&text=Sin+Foto'">`; total += outfitActual.calzado.precio; htmlResumen += `<div><span>Calzado: ${outfitActual.calzado.nombre}</span><b>$${outfitActual.calzado.precio.toFixed(2)}</b></div>`; } else { slotCal.innerHTML = ''; } document.getElementById('total-outfit').innerText = total.toFixed(2); if(htmlResumen === '') { listaResumen.innerHTML = '<div style="color: #999; justify-content: center; border: none;">Ninguna prenda seleccionada</div>'; } else { listaResumen.innerHTML = htmlResumen; } }
         function limpiarProbador() { outfitActual = { superior: null, inferior: null, calzado: null }; actualizarManiquiVisual(); }
-        function agregarOutfitAlCarrito() {
-            let agregados = 0;
-            if (outfitActual.superior) { miCarrito.push(outfitActual.superior); agregados++; }
-            if (outfitActual.inferior) { miCarrito.push(outfitActual.inferior); agregados++; }
-            if (outfitActual.calzado) { miCarrito.push(outfitActual.calzado); agregados++; }
-            if (agregados > 0) { localStorage.setItem('carrito_guardado', JSON.stringify(miCarrito)); actualizarContadorCarrito(); alert("Conjunto anadido al carrito con exito."); verCarrito(); } 
-            else { alert("Selecciona al menos una prenda."); }
-        }
+        function agregarOutfitAlCarrito() { let agregados = 0; if (outfitActual.superior) { miCarrito.push(outfitActual.superior); agregados++; } if (outfitActual.inferior) { miCarrito.push(outfitActual.inferior); agregados++; } if (outfitActual.calzado) { miCarrito.push(outfitActual.calzado); agregados++; } if (agregados > 0) { localStorage.setItem('carrito_guardado', JSON.stringify(miCarrito)); actualizarContadorCarrito(); alert("Conjunto anadido al carrito con exito."); verCarrito(); } else { alert("Selecciona al menos una prenda."); } }
 
-        function verMisFavoritos() {
-            const idUsuarioActual = localStorage.getItem('id_usuario'); if (!idUsuarioActual) return;
-            document.getElementById('mensaje-bienvenida').innerText = "Mis Favoritos"; document.getElementById('btnFavs').style.display = 'none'; document.getElementById('btnVolver').style.display = 'inline-block'; document.getElementById('panel-admin').style.display = 'none'; document.getElementById('pantalla-probador').style.display = 'none'; document.getElementById('barra-categorias').style.display = 'none'; document.getElementById('pantalla-catalogo').style.display = 'block'; document.getElementById('contenido-principal').innerHTML = '<h2>Cargando favoritos...</h2>';
-            fetch('http://localhost:8080/api/deseos/usuario/' + idUsuarioActual).then(r => r.json()).then(productos => { if (productos.length === 0) document.getElementById('contenido-principal').innerHTML = '<h3>Aun no tienes productos en tu lista de deseos</h3>'; else renderizarTarjetas(productos, []); }).catch(e => console.error("Error:", e));
-        }
-        function agregarADeseos(idProducto) { const idUsuarioActual = localStorage.getItem('id_usuario'); fetch('http://localhost:8080/api/deseos/agregar', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id_usuario: parseInt(idUsuarioActual), id_variante: parseInt(idProducto) }) }).then(r => r.text().then(t => alert(t))); }
+        function agregarADeseos(idProducto) { const idUsuarioActual = localStorage.getItem('id_usuario'); fetch('http://localhost:8080/api/productos/deseos/agregar', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id_usuario: parseInt(idUsuarioActual), id_variante: parseInt(idProducto) }) }).then(r => r.text().then(t => { alert(t); if (document.getElementById('mensaje-bienvenida').innerText === "Mis Favoritos") { verMisFavoritos(); } })); }
+        function verMisFavoritos() { const idUsuarioActual = localStorage.getItem('id_usuario'); if (!idUsuarioActual) return; document.getElementById('mensaje-bienvenida').innerText = "Mis Favoritos"; document.getElementById('btnTiendaPuntos').style.display = 'none'; document.getElementById('btnFavs').style.display = 'none'; document.getElementById('btnCompras').style.display = 'none'; document.getElementById('btnVolver').style.display = 'inline-block'; document.getElementById('panel-admin').style.display = 'none'; document.getElementById('pantalla-probador').style.display = 'none'; document.getElementById('barra-categorias').style.display = 'none'; document.getElementById('pantalla-catalogo').style.display = 'block'; document.getElementById('contenido-principal').innerHTML = '<h2>Cargando favoritos...</h2>'; fetch('http://localhost:8080/api/productos/deseos/usuario/' + idUsuarioActual).then(r => r.json()).then(productos => { if (productos.length === 0) { document.getElementById('contenido-principal').innerHTML = '<h3>Aún no tienes productos en tu lista de deseos</h3>'; } else { renderizarTarjetas(productos, []); } }).catch(e => console.error("Error:", e)); }
+        function devolverPedido(idPedido) { if(confirm("¿Estás seguro que deseas devolver este pedido? El stock regresará automáticamente a la tienda.")) { fetch('http://localhost:8080/api/pedidos/devolver/' + idPedido, {method: 'POST'}).then(r => r.text().then(t => { alert(t); verMisCompras(); })); } }
+        function verMisCompras() { const idUsuarioActual = localStorage.getItem('id_usuario'); if (!idUsuarioActual) return; document.getElementById('mensaje-bienvenida').innerText = "Mi Historial de Compras"; document.getElementById('btnTiendaPuntos').style.display = 'none'; document.getElementById('btnFavs').style.display = 'none'; document.getElementById('btnCompras').style.display = 'none'; document.getElementById('btnVolver').style.display = 'inline-block'; document.getElementById('panel-admin').style.display = 'none'; document.getElementById('pantalla-probador').style.display = 'none'; document.getElementById('barra-categorias').style.display = 'none'; document.getElementById('pantalla-catalogo').style.display = 'block'; document.getElementById('contenido-principal').innerHTML = '<h2>Cargando historial...</h2>'; fetch('http://localhost:8080/api/pedidos/usuario/' + idUsuarioActual).then(r => r.json()).then(pedidos => { fetch('http://localhost:8080/api/pedidos/puntos/' + idUsuarioActual).then(r=>r.json()).then(puntos => { let html = `<div class="carrito-container" style="max-width: 800px; margin: 0 auto; text-align: left;"><div style="background: #1f1c2c; color: white; padding: 15px; border-radius: 8px; margin-bottom: 20px; text-align: center;"><h3 style="margin: 0;">Mis Puntos StyleMatch: <span style="color: #f1c40f;">${puntos.puntos_actuales || 0} pts</span></h3></div>`; if (pedidos.length === 0) { html += '<h3>Aún no has realizado ninguna compra en StyleMatch.</h3></div>'; document.getElementById('contenido-principal').innerHTML = html; return; } pedidos.forEach(p => { const fechaLimpia = new Date(p.fecha_pedido).toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' }); const prendasCompradas = p.prendas || 'Artículos de la tienda'; let btnDevolver = p.estado_pago === 'Devuelto' ? '<span style="color:#dc3545; font-size:0.9em; font-weight:bold;">Devuelto al Almacén</span>' : `<button style="background: #dc3545; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 0.8em; font-weight:bold;" onclick="devolverPedido(${p.id_pedido})">Solicitar Devolución</button>`; html += `<div style="background: white; border: 1px solid #ddd; padding: 15px; margin-bottom: 10px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center;"><div style="max-width: 65%;"><h4 style="margin: 0; color: #1f1c2c;">${prendasCompradas}</h4><p style="margin: 5px 0 0 0; color: gray; font-size: 0.9em;">Fecha: ${fechaLimpia} <span style="font-size: 0.8em; color: #ccc; margin-left: 8px;">(Ref: #${p.id_pedido})</span></p></div><div style="text-align: right;"><span style="display: block; font-weight: bold; color: #28a745; font-size: 1.2em; margin-bottom: 5px;">$${Number(p.total_pagado).toFixed(2)}</span>${btnDevolver}</div></div>`; }); html += '</div>'; document.getElementById('contenido-principal').innerHTML = html; }); }).catch(e => { document.getElementById('contenido-principal').innerHTML = '<h3>Aún no has realizado ninguna compra.</h3>'; }); }
     </script>
 </body>
 </html>
